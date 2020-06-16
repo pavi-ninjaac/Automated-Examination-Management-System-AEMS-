@@ -1,0 +1,62 @@
+.progresses {
+  /* width: 70%; */
+  /* margin: auto; */
+  display: block;
+  margin-top: 100px;
+}
+
+.container-home {
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.login-button {
+  width: 22.5%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.pgrs-left {
+  margin: 0px 100px 0px 100px;
+  float: left;
+}
+
+.pgrs-right {
+  margin: 0px 100px 0px 100px;
+  float: right;
+}
+
+/* setting the dimensions */
+progress {
+  width: 250px;
+  height: 20px;
+  display: block;
+  /* disable defaults */
+  -webkit-appearance: none;
+  border-radius: 15px;
+  border: 1px solid rgb(150, 53, 240);
+}
+/*Styling the background of the progress bar */
+progress::-webkit-progress-bar {
+  background: white;
+  border-radius: 45px;
+  padding: 1px;
+  box-shadow: 0 1px 0px 0 rgb(150, 53, 240);
+}
+/* Setting the appearance of the meter */
+progress::-webkit-progress-value {
+  border-radius: 25px;
+  box-shadow: inset 0 1px 1px 0 rgb(150, 53, 240);
+  background-size: 250px 25px;
+  background-image: linear-gradient(
+    135deg,
+    rgb(93, 0, 180),
+    rgb(195, 0, 255) 55%,
+    rgb(93, 0, 180) 75%,
+    rgb(150, 53, 240) 75%,
+    rgb(93, 0, 180),
+    rgb(150, 53, 240) 75%,
+    rgb(93, 0, 180)
+  );
+}

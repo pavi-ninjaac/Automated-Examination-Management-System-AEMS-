@@ -1,0 +1,489 @@
+* {
+  margin: 0px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.top-bar {
+  margin: 0px;
+  padding: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 17px;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 200;
+}
+
+.top-bar h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.logo {
+  float: left;
+}
+
+.branding {
+  float: inline;
+}
+
+.header-image {
+  padding: 10px;
+}
+
+.header-text {
+  padding: 10px;
+}
+
+.heading {
+  margin: 20px;
+  padding: 5px 20px;
+}
+
+.title-left-pane {
+  width: 90%;
+  display: inline-block;
+  margin-bottom: -12px;
+}
+
+.nav {
+  float: inline;
+  background-color: blueviolet;
+  /* position: fixed; */
+}
+
+.nav-bar h2 {
+  background-color: rgb(107, 34, 175);
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 15px -10px -10px -10px;
+}
+
+.nav-bar a {
+  float: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -3px;
+  padding-top: 3px;
+}
+
+.nav-bar a:hover {
+  border-radius: 360px;
+  background-color: rgb(73, 11, 131);
+}
+
+.nav-links {
+  float: right;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  float: right;
+  background-color: transparent;
+}
+
+.dropbtn {
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -3px;
+  padding-top: 3px;
+  float: right;
+  background-color: transparent;
+  color: white;
+  border: transparent;
+}
+
+.dropdown-content {
+  display: none;
+  float: left;
+  position: absolute;
+  text-align: left;
+  background-color: #f1f1f1;
+  min-width: 130px;
+  margin-top: 15px;
+  margin-left: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  min-width: 130px;
+  margin-top: 0px;
+  float: left;
+  color: black;
+  padding: 12px 16px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  float: left;
+  border-radius: 0%;
+  background-color: blueviolet;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  border-radius: 360px;
+  background-color: rgb(73, 11, 131);
+}
+
+.page-head {
+  margin-left: 45%;
+  margin-top: 15px;
+  padding: 5px 15px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 150px;
+  background-color: blueviolet;
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  color: white;
+}
+
+.user-info {
+  align-self: auto;
+  align-content: center;
+  vertical-align: middle;
+  float: right;
+  padding: 8px 5px 5px 25px;
+  background: blueviolet;
+  border-radius: 15px;
+}
+
+.info-text {
+  float: left;
+  text-align: justify;
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  color: white;
+}
+
+.img-user {
+  margin-left: 10px;
+  float: right;
+}
+
+.user-image {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: lightgray;
+}
+
+::-ms-input-placeholder {
+  color: lightgray;
+}
+
+table {
+  border-collapse: separate;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+}
+
+table .left {
+  font-weight: 600;
+  text-align: right;
+}
+
+.key {
+  border-radius: 100px;
+  padding: 0px 5px;
+  border: 1px solid rgb(0, 110, 255);
+}
+
+.complaint-sub {
+  margin-top: 15px;
+  padding: 5px 10px;
+  text-align: justify;
+  border-radius: 150px;
+  background-color: blueviolet;
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  color: white;
+  float: left;
+}
+
+.message {
+  margin-top: 25px;
+}
+
+.message-box {
+  border-radius: 10px;
+  text-align: justify;
+  border: 1px solid blueviolet;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 15px;
+  /* color: rgb(155, 155, 155); */
+  /* background-color: transparent; */
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+  min-height: 150px;
+  max-height: 500px;
+  height: 110px;
+  padding: 5px;
+}
+
+.actions {
+  width: 75%;
+  margin: auto;
+}
+
+.button {
+  width: 200px;
+  background-color: transparent;
+  color: blueviolet;
+  border-radius: 150px;
+  border: 1px solid blueviolet;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button:hover {
+  background-color: blueviolet;
+  color: white;
+}
+
+.button-send {
+  width: 200px;
+  background-color: transparent;
+  color: rgb(15, 15, 15);
+  border-radius: 150px;
+  border: 1px solid rgb(30, 30, 30);
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button-send:hover {
+  background-color: rgb(15, 15, 15);
+  color: white;
+}
+
+.button-alert {
+  width: 200px;
+  background-color: transparent;
+  color: rgb(221, 4, 4);
+  border-radius: 150px;
+  border: 1px solid rgb(221, 4, 4);
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button-alert:hover {
+  background-color: rgb(221, 4, 4);
+  color: white;
+}
+
+.button-pending {
+  width: 200px;
+  background-color: transparent;
+  color: orangered;
+  border-radius: 150px;
+  border: 1px solid orangered;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button-pending:hover {
+  background-color: orangered;
+  color: white;
+}
+
+.button-done {
+  width: 200px;
+  background-color: transparent;
+  color: rgb(0, 110, 255);
+  border-radius: 150px;
+  border: 1px solid rgb(0, 110, 255);
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button-done:hover {
+  background-color: rgb(0, 110, 255);
+  color: white;
+}
+
+.button-reply {
+  width: 200px;
+  background-color: transparent;
+  color: rgb(0, 170, 71);
+  border-radius: 150px;
+  border: 1px solid rgb(0, 170, 71);
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px;
+  padding: 8px 10px 5px 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+}
+
+.button-reply:hover {
+  background-color: rgb(0, 170, 71);
+  color: white;
+}
+
+.button-reply .button-icon {
+  margin-top: 3px;
+}
+
+.button-icon {
+  float: left;
+  margin-right: 5px;
+}
+
+.button-text {
+  float: inline;
+}
+
+footer {
+  width: 100%;
+  margin-top: 200px;
+  background-color: rgb(15, 15, 15);
+  color: lightgrey;
+}
+
+footer .quick-links {
+  background-color: rgb(40, 40, 40);
+  text-align: center;
+  color: rgb(221, 221, 221);
+  font-size: 13px;
+  padding: 10px 0px;
+}
+
+footer .quick-links a {
+  color: rgb(221, 221, 221);
+  text-decoration: none;
+}
+
+footer .contents {
+  color: lightgray;
+  font-size: 13px;
+  margin: 5px;
+  padding: 10px 10px;
+}
+
+footer .copyright-notes {
+  vertical-align: bottom;
+  text-align: center;
+  font-weight: 200;
+  padding: 15px 0px;
+  background-color: black;
+}
+
+.button-left {
+  float: left;
+}
+
+.button-right {
+  float: right;
+}
+
+/* USer panel */
+
+.dropdown-user {
+  position: relative;
+  float: right;
+  background-color: transparent;
+}
+
+.dropbtn-user {
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -3px;
+  padding-top: 3px;
+  float: right;
+  background-color: transparent;
+  color: white;
+  border: transparent;
+}
+
+.dropdown-content-user {
+  display: none;
+  float: left;
+  position: absolute;
+  text-align: center;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  max-width: 100px;
+  margin-top: 50px;
+  margin-left: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content-user a {
+  min-width: 100px;
+  max-width: 100px;
+  margin-top: 0px;
+  float: left;
+  color: black;
+  padding: 12px 0px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content-user a:hover {
+  float: left;
+  border-radius: 0%;
+  max-width: 100px;
+  background-color: blueviolet;
+  color: white;
+}
+
+.dropdown-user:hover .dropdown-content-user {
+  display: block;
+}

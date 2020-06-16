@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body><div class="">
+  <!-- BEGIN: ReCAPTCHA implementation example. -->
+  <div id="recaptcha-demo" class="g-recaptcha" data-sitekey="6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
+    data-callback="onSuccess">
+    <div style="width: 304px; height: 78px;">
+      <div><iframe
+          src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-&amp;co=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbTo0NDM.&amp;hl=en-GB&amp;v=eQmzkx3d5dtuXlLOA4pEID3I&amp;size=normal&amp;cb=70kymrb1n6ax"
+          width="304" height="78" role="presentation" name="a-9wf8opyjz85s" frameborder="0" scrolling="no"
+          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+      </div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response"
+        style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+    </div>
+  </div>
+  <script nonce="">
+    var onSuccess = function (response) {
+      var errorDivs = document.getElementsByClassName("recaptcha-error");
+      if (errorDivs.length) {
+        errorDivs[0].className = "";
+      }
+      var errorMsgs = document.getElementsByClassName("recaptcha-error-message");
+      if (errorMsgs.length) {
+        errorMsgs[0].parentNode.removeChild(errorMsgs[0]);
+      }
+    };</script><!-- Optional noscript fallback. --><noscript>
+    <div style="width: 302px; height: 462px;"><iframe
+        src="/recaptcha/api/fallback?k=6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-" frameborder="0"
+        scrolling="no"></iframe>
+      <div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response"></textarea>
+      </div>
+    </div><br>
+  </noscript><!-- END: ReCAPTCHA implementation example. -->
+</div>
+</body>
+
+</html>
