@@ -1,27 +1,19 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import path from 'path';
 
-import dotenv from 'dotenv';
+const router = express.Router();
 
-dotenv.config();
-const app = express();
-const port = Number(process.env.PORT) || 3000;
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  router.use(express.static(path.join(__dirname, 'client', 'build')));
 
-mongoose.connect((process.env.DB_URL as string), {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.info('Connection established to mongo db.')
-});
+  router.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+} else {
+  router.get('*', (req, res) => {
+    res.send('Hello from APP.');
+  });
+}
 
-
-app.get('/', (req, res) => res.send('Hello World!'));
-
-// app.use('api/routes/auth');
-
-app.listen(port, () => console.log(`Server started at port ${port}.`));
+export default router;
