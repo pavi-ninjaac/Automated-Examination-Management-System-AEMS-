@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Logger from 'js-logger';
 
+import testRoute from './routes/TestRoute';
+
 dotenv.config();
 const router = express.Router();
 
@@ -18,6 +20,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   Logger.info('Connection established to mongo db.')
 });
+
+router.use('/test', testRoute);
 
 router.get('/', (req, res) => {
   res.send('Hello kitty!')
