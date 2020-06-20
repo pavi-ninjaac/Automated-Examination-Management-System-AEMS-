@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Logger from 'js-logger';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 import User, { UserInterface } from '../models/User';
 
@@ -46,7 +47,10 @@ router.get('/verify', JSONParser, (req, res) => {
     bcrypt.compare(req.body.password, user.password)
       .then(function (authenticated) {
         if (authenticated) {
-          res.send({ authenticated: true, id: user._id, name: user.name });
+          const token = jwt.sign({
+            data: user.email
+          }, (process.env.SECRET as string), { expiresIn: '1h' });
+          res.send({ authenticated: true, accessToken: token, id: user._id, name: user.name });
         } else {
           res.send({ message: 'wrong password' });
         }

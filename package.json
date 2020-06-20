@@ -13,11 +13,13 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.19"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.7.27",
     "dotenv": "^8.2.0",
     "js-logger": "^1.6.0"
