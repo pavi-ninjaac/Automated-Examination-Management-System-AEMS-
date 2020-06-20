@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import Logger from 'js-logger';
 
 import testRoute from './routes/TestRoute';
+import auth from './routes/auth';
 
 dotenv.config();
 const router = express.Router();
@@ -22,6 +23,7 @@ db.once('open', function () {
 });
 
 router.use('/test', testRoute);
+router.use('/auth', auth);
 
 router.get('/', (req, res) => {
   res.send('Hello kitty!')

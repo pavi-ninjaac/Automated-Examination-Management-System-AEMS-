@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Logger from 'js-logger';
 
-import TestModel from '../models/testModel';
+import TestModel from '../models/TestModel';
 
 const router = express.Router();
 const JSONParser = bodyParser.json();
