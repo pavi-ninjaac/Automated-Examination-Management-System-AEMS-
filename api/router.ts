@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Logger from 'js-logger';
 
-import testRoute from './routes/TestRoute';
 import auth from './routes/auth';
 
 dotenv.config();
@@ -22,7 +21,6 @@ db.once('open', function () {
   Logger.info('Connection established to mongo db.')
 });
 
-router.use('/test', testRoute);
 router.use('/auth', auth);
 
 router.get('/', (req, res) => {
