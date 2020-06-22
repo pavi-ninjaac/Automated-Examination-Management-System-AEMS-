@@ -1,38 +1,14 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import Logger from 'js-logger';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import bodyParser from 'body-parser';
+import express from 'express';
+import Logger from 'js-logger';
 
 import User, { UserInterface } from '../models/User';
+import { generateAccessToken, generateRefreshToken, validateToken } from '../middlewares/tokens';
 
 const router = express.Router();
 const JSONParser = bodyParser.json();
 const saltRounds = 5;
-
-/* Token validations - middleware */
-
-const generateAccessToken = ({ _id, email }: UserInterface): string => jwt.sign({
-  id: _id,
-  email: email
-}, (process.env.ACCESS_TOKEN_SECRET as string), { expiresIn: '30m' });
-
-const generateRefreshToken = ({ _id, email }: UserInterface): string => jwt.sign({
-  id: _id,
-  email: email
-}, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d' });
-
-const validateToken = (req: express.Request | any, res: express.Response, next: express.NextFunction) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) { return res.status(401).json({ message: 'access token is not found' }); }
-
-  jwt.verify(token, (process.env.ACCESS_TOKEN_SECRET as string), (err: any, deserializedInfo: any) => {
-    if (err) { return res.status(403).json({ message: 'invalid or expired access token' }); }
-    req.user = deserializedInfo;
-    next();
-  });
-}
 
 /* NEW USER */
 router.post('/create', JSONParser, async (req: express.Request, res: express.Response) => {
