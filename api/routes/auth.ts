@@ -56,12 +56,14 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
 
 /* Login: Create and send a JWT */
 router.get('/signin', JSONParser, (req: express.Request, res: express.Response) => {
+  Logger.debug('> Login request');
   User.findOne({ email: req.body.email }, async (err, user: UserInterface) => {
     if (err) { Logger.error('Error finding accounts'); return res.sendStatus(500); }
 
     // Check if the email id exist
     if (!user) { return res.status(401).json({ message: 'user not found' }); }
     try {
+      Logger.debug('Deserializing and comparing passwords...');
       const isAuthentic = await bcrypt.compare(req.body.password, user.password);
       if (!isAuthentic) { return res.status(401).json({ message: 'wrong password' }); }
 
