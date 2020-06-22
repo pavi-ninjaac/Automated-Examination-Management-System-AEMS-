@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import bodyParser from 'body-parser';
 import express from 'express';
 import Logger from 'js-logger';
 
@@ -8,7 +7,7 @@ import { generateAccessToken, generateRefreshToken, validateToken } from '../mid
 import validateUser from '../validators/user';
 
 const router = express.Router();
-const JSONParser = bodyParser.json();
+const JSONParser = express.json();
 const saltRounds = 5;
 
 /* NEW USER */
