@@ -5,8 +5,7 @@ import Logger from 'js-logger';
 
 import User, { UserInterface } from '../models/User';
 import { generateAccessToken, generateRefreshToken, validateToken } from '../middlewares/tokens';
-import userValidator from '../validators/user';
-import validate from '../validators/user';
+import validateUser from '../validators/user';
 
 const router = express.Router();
 const JSONParser = bodyParser.json();
@@ -32,7 +31,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
     // Validate the details
     try {
       Logger.debug('Validating credentials...')
-      await validate(newUser);
+      await validateUser(newUser);
     } catch (validationError) {
       return res.status(409).json({ message: 'validation error', details: validationError.details });
     }
