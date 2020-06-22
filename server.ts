@@ -4,7 +4,7 @@ import Logger from 'js-logger';
 import cors from 'cors';
 
 import APIRouter from './api/router';
-import APPRouter from './app';
+import APPRouter from './client/app';
 
 dotenv.config();
 const app = express();
