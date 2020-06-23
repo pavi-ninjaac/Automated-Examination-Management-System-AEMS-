@@ -79,6 +79,7 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
 
 router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
   try {
+    if (req.body.password) { req.body.password = await bcrypt.hash(req.body.password, saltRounds); }
     await User.findByIdAndUpdate(req.user.id, req.body);
     return res.status(200).json({ message: 'updated successfully' });
   } catch (error) {
