@@ -14,7 +14,7 @@ const saltRounds = 5;
 /* NEW USER */
 router.post('/register', JSONParser, async (req: express.Request, res: express.Response) => {
   try {
-    Logger.debug('> New user registration request.')
+    Logger.debug('> New user registration request')
     // Check if the mail ID is already used
     const existingUser = await User.find({ email: req.body.email }, { password: 0 });
     if (existingUser.length !== 0) {
@@ -71,19 +71,25 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
       const refreshToken = generateRefreshToken(user);
       res.status(200).json({ authenticated: true, accessToken: accessToken, refreshToken: refreshToken, name: user.name });
     } catch (err) {
-      res.sendStatus(500);
       Logger.error(err);
+      return res.status(500).json({ message: 'could not process login request' });
     }
   });
 });
 
 router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
+  Logger.debug('> User update request')
   try {
-    if (req.body.password) { req.body.password = await bcrypt.hash(req.body.password, saltRounds); }
+    if (req.body.password) {
+      // Hash the password
+      Logger.debug('Hashing password...');
+      req.body.password = await bcrypt.hash(req.body.password, saltRounds);
+    }
     await User.findByIdAndUpdate(req.user.id, req.body);
     return res.status(200).json({ message: 'updated successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'error updating user' });
+    Logger.error(error);
+    return res.status(500).json({ message: 'could not process update request' });
   }
 })
 
