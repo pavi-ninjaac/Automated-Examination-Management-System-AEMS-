@@ -1,7 +1,13 @@
-import express from 'express';
 import jwt from 'jsonwebtoken';
+import Logger from 'js-logger';
 
 import { UserInterface } from '../models/User';
+
+interface JWTValidationResult {
+  status: number;
+  message?: string;
+  user?: object
+}
 
 const generateAccessToken = ({ _id, email }: UserInterface): string => jwt.sign({
   id: _id,
@@ -13,20 +19,22 @@ const generateRefreshToken = ({ _id, email }: UserInterface): string => jwt.sign
   email: email
 }, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d' });
 
-const validateToken = (req: express.Request | any, res: express.Response, next: express.NextFunction) => {
-  const authHeader = req.headers['authorization'];
+const validateToken = (authHeader: any): JWTValidationResult => {
   const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) { return res.status(401).json({ message: 'access token is not found' }); }
+  if (token == null) { return { status: 401, message: 'access token is not found' } }
 
+  let result: JWTValidationResult = { status: 500, message: 'error validating token' };
   jwt.verify(token, (process.env.ACCESS_TOKEN_SECRET as string), (err: any, deserializedInfo: any) => {
-    if (err) { return res.status(403).json({ message: 'invalid or expired access token' }); }
-    req.user = deserializedInfo;
-    next();
+    Logger.debug('Verifying token...');
+    if (err) { return (result = { status: 403, message: 'invalid or expired access token' }) }
+    return (result = { status: 200, user: deserializedInfo });
   });
+  return result;
 }
 
 export {
   generateAccessToken,
   generateRefreshToken,
-  validateToken
+  validateToken,
+  JWTValidationResult
 };
