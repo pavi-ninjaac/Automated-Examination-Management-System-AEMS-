@@ -4,6 +4,7 @@ import Logger from 'js-logger';
 
 import User, { UserInterface } from '../models/User';
 import { generateAccessToken, generateRefreshToken, validateToken } from '../middlewares/tokens';
+import verifyAuth from '../middlewares/verifyAuth';
 import validateUser from '../validators/user';
 
 const router = express.Router();
@@ -76,6 +77,15 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
   });
 });
 
-router.get('/userDetails', validateToken, (req: express.Request | any, res: express.Response) => { return res.send(req.user); });
+router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
+  try {
+    await User.findByIdAndUpdate(req.user.id, req.body);
+    return res.status(200).json({ message: 'updated successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'error updating user' });
+  }
+})
+
+router.get('/userDetails', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
 
 export default router;
