@@ -17,7 +17,7 @@ mongoose.connect((process.env.DB_URL as string), {
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
+db.once('open', (): void => {
   Logger.info('Connection established to mongo db.');
 });
 

@@ -18,4 +18,4 @@ app.use(cors());
 app.use('/api', APIRouter);
 app.use('/', APPRouter);
 
-app.listen(port, () => Logger.info(`Server started at port ${port}.`));
+app.listen(port, (): void => Logger.info(`Server started at port ${port}.`));
