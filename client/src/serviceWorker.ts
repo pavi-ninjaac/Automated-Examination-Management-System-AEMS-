@@ -9,7 +9,7 @@ const urlsToCache = [
 self.addEventListener('install', (event: any) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function (cache) {
+      .then((cache: Cache) => {
         return cache.addAll(urlsToCache);
       })
   );
@@ -17,7 +17,7 @@ self.addEventListener('install', (event: any) => {
 
 self.addEventListener('fetch', (event: any) => {
   event.respondWith(
-    caches.match(event.request).then(function (response) {
+    caches.match(event.request).then((response: Response | undefined) => {
       return response || fetch(event.request);
     })
   );
@@ -28,8 +28,8 @@ const register = () => {
     return;
   }
   const regEvt = navigator.serviceWorker.register('./ServiceWorker.js');
-  regEvt.then((regObj) => Logger.log('Service worker registered successfully.', 'Scope: ', regObj.scope));
-  regEvt.catch((err) => Logger.error('Unable to register service worker.'));
+  regEvt.then((regObj: ServiceWorkerRegistration) => Logger.log('Service worker registered successfully.', 'Scope: ', regObj.scope));
+  regEvt.catch((err: Error | any) => Logger.error('Unable to register service worker.', err));
 }
 
 export default register;
