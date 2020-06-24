@@ -6,6 +6,8 @@ const urlsToCache = [
   '/images/',
   '/assets/'
 ];
+let registration: ServiceWorkerRegistration;
+
 self.addEventListener('install', (event: any) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -23,13 +25,23 @@ self.addEventListener('fetch', (event: any) => {
   );
 });
 
-const register = () => {
+const register = (): void => {
   if (!('serviceWorker' in navigator && process.env.NODE_ENV === 'production')) {
     return;
   }
   const regEvt = navigator.serviceWorker.register('./ServiceWorker.js');
-  regEvt.then((regObj: ServiceWorkerRegistration) => Logger.log('Service worker registered successfully.', 'Scope: ', regObj.scope));
+  regEvt.then((regObj: ServiceWorkerRegistration) => {
+    registration = regObj;
+    Logger.info('Service worker registered successfully.', 'Scope: ', regObj.scope);
+  });
   regEvt.catch((err: Error | any) => Logger.error('Unable to register service worker.', err));
 }
 
-export default register;
+const unregister = (): void => {
+  if (registration) {
+    registration.unregister();
+    Logger.info('Unregistered successfully.');
+  }
+}
+
+export { register, unregister };
