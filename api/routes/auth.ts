@@ -93,6 +93,6 @@ router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any
   }
 })
 
-router.get('/userDetails', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
+router.get('*', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
 
 export default router;

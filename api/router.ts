@@ -23,7 +23,7 @@ db.once('open', (): void => {
 
 router.use('/auth', auth);
 
-router.get('/', (req, res) => {
+router.get('*', (req, res) => {
   res.send('Hello kitty!')
 });
 
