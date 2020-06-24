@@ -1,0 +1,11 @@
+.center-container {
+  &__outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__inner {
+    padding: 1rem;
+  }
+}
