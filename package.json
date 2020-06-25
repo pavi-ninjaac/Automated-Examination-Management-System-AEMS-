@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start-server": "nodemon server.ts",
-    "start-client": "npm start --prefix client"
+    "start-app": "npm start --prefix app"
   },
   "author": "",
   "license": "MIT",
