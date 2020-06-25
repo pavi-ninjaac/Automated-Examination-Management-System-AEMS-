@@ -1,8 +1,11 @@
 import React from 'react';
+import Landing from './pages/Landing';
+
+import './assets/styles/main.css';
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <Landing />
   );
 }
 
