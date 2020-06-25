@@ -1,4 +1,10 @@
+// $theme-colors: ("info": tomato,
+  //   "danger": teal);
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 @import 'abstract/variables';
 
 @import 'base/base';
 @import 'base/typography';
+
+@import 'views/centerContainer';
