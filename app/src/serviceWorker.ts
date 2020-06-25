@@ -8,7 +8,7 @@ const urlsToCache = [
 ];
 let registration: ServiceWorkerRegistration;
 
-self.addEventListener('install', (event: any) => {
+window.self.addEventListener('install', (event: any) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache: Cache) => {
@@ -17,7 +17,7 @@ self.addEventListener('install', (event: any) => {
   );
 });
 
-self.addEventListener('fetch', (event: any) => {
+window.self.addEventListener('fetch', (event: any) => {
   event.respondWith(
     caches.match(event.request).then((response: Response | undefined) => {
       return response || fetch(event.request);
