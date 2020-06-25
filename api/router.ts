@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Logger from 'js-logger';
 
-import auth from './routes/auth';
+import { auth } from './routes';
 
 dotenv.config();
 const router = express.Router();

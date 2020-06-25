@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import Logger from 'js-logger';
 
-import { UserInterface } from '../models/User';
+import { UserInterface, UserPayload } from '../models/User';
 
 interface JWTValidationResult {
   status: number;
@@ -9,15 +9,15 @@ interface JWTValidationResult {
   user?: object
 }
 
-const generateAccessToken = ({ _id, email }: UserInterface): string => jwt.sign({
-  id: _id,
-  email: email
-}, (process.env.ACCESS_TOKEN_SECRET as string), { expiresIn: '30m' });
+const ACCESS_SECRET = (process.env.ACCESS_TOKEN_SECRET as string);
+const REFRESH_SECRET = (process.env.REFRESH_TOKEN_SECRET as string);
+const issuer = '@KrishnaMoorthy12'
 
-const generateRefreshToken = ({ _id, email }: UserInterface): string => jwt.sign({
-  id: _id,
-  email: email
-}, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d' });
+const generateAccessToken = ({ _id: id, email }: UserInterface): string =>
+  jwt.sign({ id, email } as UserPayload, (process.env.ACCESS_TOKEN_SECRET as string), { expiresIn: '30m', issuer });
+
+const generateRefreshToken = ({ _id: id, email }: UserInterface): string =>
+  jwt.sign({ id, email } as UserPayload, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d', issuer });
 
 const validateToken = (authHeader: any): JWTValidationResult => {
   const token = authHeader && authHeader.split(' ')[1];

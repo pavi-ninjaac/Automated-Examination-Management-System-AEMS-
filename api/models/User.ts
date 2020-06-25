@@ -1,10 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface UserInterface extends Document {
+interface UserInterface extends Document {
   name: string;
   email: string;
   phone: number;
   password: string;
+}
+
+interface UserPayload {
+  id: string;
+  email: string;
 }
 
 const UserSchema = new Schema({
@@ -20,3 +25,4 @@ const UserSchema = new Schema({
 const User = mongoose.model<UserInterface>('User', UserSchema);
 
 export default User;
+export { UserInterface, UserPayload }

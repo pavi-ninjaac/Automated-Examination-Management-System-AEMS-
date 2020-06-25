@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import express from 'express';
+import express, { request } from 'express';
 import Logger from 'js-logger';
 
 import User, { UserInterface } from '../models/User';
@@ -53,6 +53,33 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
   }
 });
 
+/* Update account details [name, email, password] */
+router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
+  Logger.debug('> User update request')
+  try {
+    if (req.body.password) {
+      // Hash the password
+      Logger.debug('Hashing password...');
+      req.body.password = await bcrypt.hash(req.body.password, saltRounds);
+    }
+    await User.findByIdAndUpdate(req.user.id, req.body);
+    return res.status(200).json({ message: 'updated successfully' });
+  } catch (error) {
+    Logger.error(error);
+    return res.status(500).json({ message: 'could not process update request' });
+  }
+});
+
+router.post('/delete', verifyAuth, (req: express.Request | any, res) => {
+  const { id: userId } = req.user
+  User.findByIdAndDelete(userId, (err, user) => {
+    if (err) { return res.status(500).json({ message: 'error deleting user', details: err }) }
+    if (!user) { return res.status(500).json({ message: 'error deleting user', details: 'user not found' }) }
+    if (user._id === userId) { return res.status(200).json({ message: 'user deleted successfully' }) }
+    else { Logger.error('Suspected error: deleted wrong user!', user); return res.sendStatus(200) }
+  });
+});
+
 /* Login: Create and send a JWT */
 router.get('/signin', JSONParser, (req: express.Request, res: express.Response) => {
   Logger.debug('> Login request');
@@ -77,22 +104,27 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
   });
 });
 
-router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
-  Logger.debug('> User update request')
-  try {
-    if (req.body.password) {
-      // Hash the password
-      Logger.debug('Hashing password...');
-      req.body.password = await bcrypt.hash(req.body.password, saltRounds);
-    }
-    await User.findByIdAndUpdate(req.user.id, req.body);
-    return res.status(200).json({ message: 'updated successfully' });
-  } catch (error) {
-    Logger.error(error);
-    return res.status(500).json({ message: 'could not process update request' });
-  }
-})
+router.get('/logout', verifyAuth, (req: Express.Request | any, res) => {
+  Logger.debug('> Logout request');
+  if (!req.user) { return res.status(403).json({ message: 'not authenticated' }) }
+  generateAccessToken(req.user);
+  generateRefreshToken(req.user);
+  req.user = '';
+  req.headers['authorization'] = '';
 
-router.get('*', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
+  return res.status(200).json({ message: 'logout successful' });
+});
+
+router.get('/details', verifyAuth, async (req: Express.Request | any, res) => {
+  try {
+    const loggedInUser = await User.findOne({ _id: req.user.id }, { password: 0, __v: 0 });
+    if (!loggedInUser) {
+      return res.status(204).json({ message: 'error finding user' });
+    }
+    return res.status(200).send(loggedInUser);
+  } catch (error) { return res.status(500).json({ message: 'error finding user' }) }
+});
+
+router.get('/token-details', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
 
 export default router;

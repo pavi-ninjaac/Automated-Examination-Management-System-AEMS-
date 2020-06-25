@@ -2,6 +2,7 @@ import express from 'express';
 import { validateToken, JWTValidationResult } from './tokens';
 
 const verify = (req: express.Request | any, res: express.Response, next: express.NextFunction) => {
+  if (req.user) { next(); }
   const authHeader = req.headers['authorization'];
   const verificationResult: JWTValidationResult = validateToken(authHeader);
 
