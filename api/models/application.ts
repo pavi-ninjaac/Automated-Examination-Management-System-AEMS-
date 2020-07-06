@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 const applicationSchema = new Schema({
-  _user: { type: mongoose.Types.ObjectId, required: true },
+  _user: { type: mongoose.Types.ObjectId, required: true, unique: true },
 
   name: { type: String, trim: true, required: true },
   fatherName: { type: String, trim: true, required: true },
