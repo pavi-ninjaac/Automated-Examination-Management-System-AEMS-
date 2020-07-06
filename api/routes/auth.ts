@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
-import express, { request } from 'express';
+import express from 'express';
 import Logger from 'js-logger';
 
 import User, { UserInterface } from '../models/User';
-import { generateAccessToken, generateRefreshToken, validateToken } from '../middlewares/tokens';
+import { generateAccessToken, generateRefreshToken } from '../middlewares/tokens';
 import verifyAuth from '../middlewares/verifyAuth';
 import validateUser from '../validators/user';
 

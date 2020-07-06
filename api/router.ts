@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Logger from 'js-logger';
 
-import { auth } from './routes';
+import { auth, application } from './routes';
 
 dotenv.config();
 const router = express.Router();
@@ -22,6 +22,7 @@ db.once('open', (): void => {
 });
 
 router.use('/auth', auth);
+router.use('/application', application);
 
 router.get('*', (req, res) => {
   res.send('Hello kitty!')
