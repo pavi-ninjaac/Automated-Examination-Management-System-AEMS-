@@ -6,6 +6,7 @@ import User, { UserInterface } from '../models/User';
 import { generateAccessToken, generateRefreshToken } from '../middlewares/tokens';
 import verifyAuth from '../middlewares/verifyAuth';
 import validateUser from '../validators/user';
+import mail from '../middlewares/mailer';
 
 const router = express.Router();
 const JSONParser = express.json();
@@ -18,7 +19,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
     // Check if the mail ID is already used
     const existingUser = await User.find({ email: req.body.email }, { password: 0 });
     if (existingUser.length !== 0) {
-      if (existingUser.length > 1) { Logger.error('Unique email violation detected!'); }
+      if (existingUser.length > 1) { Logger.warn('Unique email violation detected!'); }
       return res.status(409).json({ message: 'email is already used' });
     }
     const newUser = new User({
@@ -44,12 +45,13 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
     Logger.debug('Creating user...');
     const savedUser = await newUser.save();
     if (savedUser === newUser) {
-      Logger.debug('User created.')
-      res.status(201).json({ message: 'account created successfully' });
+      Logger.debug('User created.');
+      mail(undefined, savedUser.email, 'Account created', `<h1>Account created successfully</h1>`);
+      return res.status(201).json({ message: 'account created successfully' });
     }
   } catch (err) {
-    res.sendStatus(500);
     Logger.error(err);
+    return res.sendStatus(500);
   }
 });
 
