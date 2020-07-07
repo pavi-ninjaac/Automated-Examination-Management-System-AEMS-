@@ -27,6 +27,7 @@
     "@types/mongoose": "^5.7.27",
     "@types/nodemailer": "^6.4.0",
     "dotenv": "^8.2.0",
-    "js-logger": "^1.6.0"
+    "js-logger": "^1.6.0",
+    "typescript": "^3.9.6"
   }
 }
