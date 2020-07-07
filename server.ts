@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import Logger from 'js-logger';
 import cors from 'cors';
 
+import * as MongooseConnectivityMediator from './api/MongooseConnectivityMediator';
 import APIRouter from './api/router';
 import APPRouter from './app/app';
 
@@ -18,4 +19,12 @@ app.use(cors());
 app.use('/api', APIRouter);
 app.use('/', APPRouter);
 
-app.listen(port, (): void => Logger.info(`Server started at port ${port}.`));
+MongooseConnectivityMediator
+  .connect()
+  .then(() => {
+    app.listen(port, (): void => {
+      Logger.info(`Server started at port ${port}.`);
+      MongooseConnectivityMediator.connectionStatus();
+    });
+  })
+  .catch(err => Logger.error('Error connecting to DB, server not started.', err));
