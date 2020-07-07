@@ -12,8 +12,8 @@ router.get('/', async (req: express.Request | any, res: express.Response) => {
   try {
     Logger.debug('> Requesting list of application...');
     const applications = await Application.find({}, { __v: 0 });
-    if (!applications || applications.length === 0) { return res.status(200).json({ message: 'no applications found' }); }
-    return res.status(204).send(applications);
+    if (!applications || applications.length === 0) { return res.status(204).json({ message: 'no applications found' }); }
+    return res.status(203).send(applications);
   } catch (err) {
     Logger.error(err);
     return res.status(500).json({ message: 'could not process request', err });
@@ -65,6 +65,5 @@ router.delete('/delete', JSONParser, verifyAuth, async (req: express.Request | a
     return res.status(500).json({ message: 'could not process request', err });
   }
 });
-
 
 export default router;

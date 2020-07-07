@@ -72,13 +72,12 @@ router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any
   }
 });
 
-router.post('/delete', verifyAuth, (req: express.Request | any, res) => {
+router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Response) => {
   const { id: userId } = req.user
   User.findByIdAndDelete(userId, (err, user) => {
     if (err) { return res.status(500).json({ message: 'error deleting user', details: err }) }
     if (!user) { return res.status(500).json({ message: 'error deleting user', details: 'user not found' }) }
-    if (user._id === userId) { return res.status(200).json({ message: 'user deleted successfully' }) }
-    else { Logger.error('Suspected error: deleted wrong user!', user); return res.sendStatus(200) }
+    if (user._id === userId) { return res.status(200).json({ message: 'user deleted successfully' }); }
   });
 });
 
@@ -106,7 +105,8 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
   });
 });
 
-router.get('/logout', verifyAuth, (req: Express.Request | any, res) => {
+/* Logout :-> Non functional */
+router.get('/logout', verifyAuth, (req: express.Request | any, res) => {
   Logger.debug('> Logout request');
   if (!req.user) { return res.status(403).json({ message: 'not authenticated' }) }
   generateAccessToken(req.user);
@@ -117,7 +117,7 @@ router.get('/logout', verifyAuth, (req: Express.Request | any, res) => {
   return res.status(200).json({ message: 'logout successful' });
 });
 
-router.get('/details', verifyAuth, async (req: Express.Request | any, res) => {
+router.get('/details', verifyAuth, async (req: express.Request | any, res: express.Response) => {
   try {
     const loggedInUser = await User.findOne({ _id: req.user.id }, { password: 0, __v: 0 });
     if (!loggedInUser) {
