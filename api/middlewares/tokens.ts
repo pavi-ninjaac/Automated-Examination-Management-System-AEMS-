@@ -6,7 +6,7 @@ import { UserInterface, UserPayload } from '../models/User';
 interface JWTValidationResult {
   status: number;
   message?: string;
-  user?: object
+  user?: object;
 }
 
 const ACCESS_SECRET = (process.env.ACCESS_TOKEN_SECRET as string);
@@ -26,7 +26,7 @@ const validateToken = (authHeader: any): JWTValidationResult => {
   let result: JWTValidationResult = { status: 500, message: 'error validating token' };
   jwt.verify(token, (process.env.ACCESS_TOKEN_SECRET as string), (err: any, deserializedInfo: any) => {
     Logger.debug('Verifying token...');
-    if (err) { return (result = { status: 403, message: 'invalid or expired access token' }) }
+    if (err) { return (result = { status: 403, message: 'invalid or expired access token' }); }
     return (result = { status: 200, user: deserializedInfo });
   });
   return result;

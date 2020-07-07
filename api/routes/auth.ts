@@ -15,7 +15,7 @@ const saltRounds = 5;
 /* NEW USER */
 router.post('/register', JSONParser, async (req: express.Request, res: express.Response) => {
   try {
-    Logger.debug('> New user registration request')
+    Logger.debug('> New user registration request');
     // Check if the mail ID is already used
     const existingUser = await User.find({ email: req.body.email }, { password: 0 });
     if (existingUser.length !== 0) {
@@ -31,7 +31,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
 
     // Validate the details
     try {
-      Logger.debug('Validating credentials...')
+      Logger.debug('Validating credentials...');
       await validateUser(newUser);
     } catch (validationError) {
       return res.status(409).json({ message: 'validation error', details: validationError.details });
@@ -57,7 +57,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
 
 /* Update account details [name, email, password] */
 router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
-  Logger.debug('> User update request')
+  Logger.debug('> User update request');
   try {
     if (req.body.password) {
       // Hash the password
@@ -73,10 +73,10 @@ router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any
 });
 
 router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Response) => {
-  const { id: userId } = req.user
+  const { id: userId } = req.user;
   User.findByIdAndDelete(userId, (err, user) => {
-    if (err) { return res.status(500).json({ message: 'error deleting user', details: err }) }
-    if (!user) { return res.status(500).json({ message: 'error deleting user', details: 'user not found' }) }
+    if (err) { return res.status(500).json({ message: 'error deleting user', details: err }); }
+    if (!user) { return res.status(500).json({ message: 'error deleting user', details: 'user not found' }); }
     if (user._id === userId) { return res.status(200).json({ message: 'user deleted successfully' }); }
   });
 });
@@ -108,7 +108,7 @@ router.get('/signin', JSONParser, (req: express.Request, res: express.Response) 
 /* Logout :-> Non functional */
 router.get('/logout', verifyAuth, (req: express.Request | any, res) => {
   Logger.debug('> Logout request');
-  if (!req.user) { return res.status(403).json({ message: 'not authenticated' }) }
+  if (!req.user) { return res.status(403).json({ message: 'not authenticated' }); }
   generateAccessToken(req.user);
   generateRefreshToken(req.user);
   req.user = '';

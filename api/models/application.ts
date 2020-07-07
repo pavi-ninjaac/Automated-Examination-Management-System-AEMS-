@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const applicationSchema = new Schema({
   _user: { type: mongoose.Types.ObjectId, required: true, unique: true },
