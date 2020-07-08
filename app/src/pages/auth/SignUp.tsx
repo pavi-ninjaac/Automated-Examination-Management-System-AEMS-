@@ -49,13 +49,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [credentials, setCredentials] = useState({
+  const [details, setDetails] = useState({
     name: "",
     email: "",
     phone: "",
     password: "",
     cPassword: ""
   });
+
+  const handleChange = (evt: any) => {
+    const newVal = evt.target.value;
+    const key = evt.target.name;
+    setDetails(prevState => {
+      return { ...prevState, [key]: newVal }
+    });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -67,7 +75,10 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(e) => {
+          e.preventDefault();
+          console.log(details);
+        }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -76,7 +87,8 @@ export default function SignUp() {
                 fullWidth
                 id="Name"
                 label="Name"
-                name="Name"
+                name="name"
+                onChange={handleChange}
                 autoComplete="name"
               />
             </Grid>
@@ -88,6 +100,7 @@ export default function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
+                onChange={handleChange}
                 autoComplete="email"
               />
             </Grid>
@@ -101,6 +114,7 @@ export default function SignUp() {
                 type="tel"
                 label="Mobile Number"
                 name="phone"
+                onChange={handleChange}
                 autoComplete="phone"
               />
             </Grid>
@@ -114,6 +128,7 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
+                onChange={handleChange}
                 autoComplete="current-password"
               />
             </Grid>
@@ -126,6 +141,7 @@ export default function SignUp() {
                 name="cPassword"
                 label="Confirm Password"
                 type="password"
+                onChange={handleChange}
                 id="cPassword"
               />
             </Grid>
