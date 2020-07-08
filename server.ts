@@ -19,6 +19,7 @@ app.use(cors());
 app.use('/api', APIRouter);
 app.use('/', APPRouter);
 
+// Connect to mongoose, then start server only if connection is successful
 MongooseConnectivityMediator
   .connect()
   .then(() => {

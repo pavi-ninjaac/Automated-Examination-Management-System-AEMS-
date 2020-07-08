@@ -12,7 +12,7 @@ const userValidationSchema = Joi.object({
 
   phone: Joi.number().integer().max(9999999999).min(5555555555),
 
-  password: Joi.string().regex(new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,18}$'))
+  password: Joi.string().regex(new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*%+])(?=.*[0-9])(?=.*[a-z]).{6,18}$'))
   // 1 small letter, 1 capital letter, 1 special char, 1 no., min: 6, max: 18
 }).unknown();
 

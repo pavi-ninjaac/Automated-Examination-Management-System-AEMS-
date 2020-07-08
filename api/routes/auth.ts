@@ -9,17 +9,18 @@ import validateUser from '../validators/user';
 import mail from '../middlewares/mailer';
 
 const router = express.Router();
-const JSONParser = express.json();
+const URLParser = express.json();
+// const URLParser = express.raw();
 const saltRounds = 5;
 
 /* NEW USER */
-router.post('/register', JSONParser, async (req: express.Request, res: express.Response) => {
+router.post('/register', URLParser, async (req: express.Request, res: express.Response) => {
   try {
     Logger.debug('> New user registration request');
     // Check if the mail ID is already used
+    Logger.debug(req.body);
     const existingUser = await User.find({ email: req.body.email }, { password: 0 });
     if (existingUser.length !== 0) {
-      if (existingUser.length > 1) { Logger.warn('Unique email violation detected!'); }
       return res.status(409).json({ message: 'email is already used' });
     }
     const newUser = new User({
@@ -34,7 +35,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
       Logger.debug('Validating credentials...');
       await validateUser(newUser);
     } catch (validationError) {
-      return res.status(409).json({ message: 'validation error', details: validationError.details });
+      return res.status(409).send({ message: 'validation error', details: validationError });
     }
 
     // Hash the password
@@ -56,7 +57,7 @@ router.post('/register', JSONParser, async (req: express.Request, res: express.R
 });
 
 /* Update account details [name, email, password] */
-router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
+router.post('/update', URLParser, verifyAuth, async (req: express.Request | any, res: express.Response) => {
   Logger.debug('> User update request');
   try {
     if (req.body.password) {
@@ -82,12 +83,14 @@ router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Res
 });
 
 /* Login: Create and send a JWT */
-router.get('/signin', JSONParser, (req: express.Request, res: express.Response) => {
+router.get('/signin', URLParser, (req: express.Request, res: express.Response) => {
   Logger.debug('> Login request');
+  Logger.debug(req.body);
   User.findOne({ email: req.body.email }, async (err, user: UserInterface) => {
     if (err) { Logger.error('Error finding accounts'); return res.sendStatus(500); }
 
     // Check if the email id exist
+    Logger.debug(user);
     if (!user) { return res.status(401).json({ message: 'user not found' }); }
     try {
       Logger.debug('Deserializing and comparing passwords...');
