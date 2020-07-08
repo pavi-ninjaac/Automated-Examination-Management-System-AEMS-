@@ -73,6 +73,7 @@ router.post('/update', URLParser, verifyAuth, async (req: express.Request | any,
   }
 });
 
+/* Delete a user account */
 router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Response) => {
   const { id: userId } = req.user;
   User.findByIdAndDelete(userId, (err, user) => {
@@ -85,7 +86,6 @@ router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Res
 /* Login: Create and send a JWT */
 router.get('/signin', URLParser, (req: express.Request, res: express.Response) => {
   Logger.debug('> Login request');
-  Logger.debug(req.body);
   User.findOne({ email: req.body.email }, async (err, user: UserInterface) => {
     if (err) { Logger.error('Error finding accounts'); return res.sendStatus(500); }
 

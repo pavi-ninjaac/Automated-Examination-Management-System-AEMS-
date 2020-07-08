@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -49,6 +49,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (evt: any) => {
+    const newVal = evt.target.value;
+    const key = evt.target.name;
+    setCredentials(prevState => {
+      return { ...prevState, [key]: newVal }
+    });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,7 +72,10 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(t) => {
+          t.preventDefault();
+          console.log(credentials);
+        }}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +85,8 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            value={credentials.email}
+            onChange={handleChange}
             autoFocus
           />
           <TextField
@@ -81,6 +98,8 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
+            value={credentials.password}
+            onChange={handleChange}
             autoComplete="current-password"
           />
           <Button

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -49,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    cPassword: ""
+  });
 
   return (
     <Container component="main" maxWidth="xs">
