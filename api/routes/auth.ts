@@ -84,8 +84,9 @@ router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Res
 });
 
 /* Login: Create and send a JWT */
-router.get('/signin', URLParser, (req: express.Request, res: express.Response) => {
+router.post('/signin', URLParser, (req: express.Request, res: express.Response) => {
   Logger.debug('> Login request');
+  Logger.debug(req.body);
   User.findOne({ email: req.body.email }, async (err, user: UserInterface) => {
     if (err) { Logger.error('Error finding accounts'); return res.sendStatus(500); }
 
@@ -131,5 +132,9 @@ router.get('/details', verifyAuth, async (req: express.Request | any, res: expre
 });
 
 router.get('/token-details', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
+
+router.get('*', (req, res) => {
+  res.status(404).json({ message: 'unknown auth request' });
+})
 
 export default router;

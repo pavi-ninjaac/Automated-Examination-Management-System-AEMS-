@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 
-import SignUp from './pages/auth/SignUp';
+import SignIn from './pages/auth/SignIn';
 
 import './assets/styles/main.css';
 
@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SignUp />
+      <SignIn />
     </ThemeProvider>
   );
 }

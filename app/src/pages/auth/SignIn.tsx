@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import login from '../../tools/functions/login';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -74,7 +76,8 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={(t) => {
           t.preventDefault();
-          console.log(credentials);
+          login(credentials);
+          // console.log(credentials);
         }}>
           <TextField
             variant="outlined"

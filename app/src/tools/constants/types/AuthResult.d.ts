@@ -1,1 +1,1 @@
-type AuthResult = User | 'not-authenticated' | 'blocked';
+type AuthResult = User | 'no-user' | 'wrong-password' | 'blocked' | 'error';
