@@ -92,11 +92,11 @@ router.post('/signin', URLParser, (req: express.Request, res: express.Response) 
 
     // Check if the email id exist
     Logger.debug(user);
-    if (!user) { return res.status(401).json({ message: 'user not found' }); }
+    if (!user) { return res.json({ status: 401, message: 'no-user' }); }
     try {
       Logger.debug('Deserializing and comparing passwords...');
       const isAuthentic = await bcrypt.compare(req.body.password, user.password);
-      if (!isAuthentic) { return res.status(401).json({ message: 'wrong password' }); }
+      if (!isAuthentic) { return res.json({ status: 401, message: 'wrong-password' }); }
 
       Logger.debug('Generating tokens...');
       const accessToken = generateAccessToken(user);

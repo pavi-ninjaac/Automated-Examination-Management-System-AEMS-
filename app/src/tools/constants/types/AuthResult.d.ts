@@ -1,1 +1,1 @@
-type AuthResult = User | 'no-user' | 'wrong-password' | 'blocked' | 'error';
+type AuthResult = User | 'processing' | 'no-user' | 'wrong-password' | 'blocked' | 'error';

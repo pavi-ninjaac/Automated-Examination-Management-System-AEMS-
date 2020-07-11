@@ -55,6 +55,7 @@ export default function SignIn() {
     email: "",
     password: ""
   });
+  const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
 
   const handleChange = (evt: any) => {
     const newVal = evt.target.value;
@@ -76,8 +77,8 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={(t) => {
           t.preventDefault();
-          login(credentials);
-          // console.log(credentials);
+          const auth = login(credentials);
+          setAuthResult(auth);
         }}>
           <TextField
             variant="outlined"
