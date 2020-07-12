@@ -21,7 +21,7 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
     Logger.debug(req.body);
     const existingUser = await User.find({ email: req.body.email }, { password: 0 });
     if (existingUser.length !== 0) {
-      return res.status(409).json({ message: 'email is already used' });
+      return res.status(200).json({ code: 409, message: 'email is already used' });
     }
     const newUser = new User({
       name: req.body.name,
@@ -35,7 +35,7 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
       Logger.debug('Validating credentials...');
       await validateUser(newUser);
     } catch (validationError) {
-      return res.status(409).send({ message: 'validation error', details: validationError });
+      return res.status(200).send({ code: 409, message: 'validation error', details: validationError });
     }
 
     // Hash the password
@@ -131,7 +131,7 @@ router.get('/details', verifyAuth, async (req: express.Request | any, res: expre
   } catch (error) { return res.status(500).json({ message: 'error finding user' }) }
 });
 
-router.get('/token-details', verifyAuth, (req: express.Request | any, res: express.Response) => res.send(req.user));
+router.get('/validate-token', verifyAuth, (req: express.Request | any, res: express.Response) => res.status(200).send(req.user));
 
 router.get('*', (req, res) => {
   res.status(404).json({ message: 'unknown auth request' });

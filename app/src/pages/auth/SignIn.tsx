@@ -10,8 +10,9 @@ import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import login from '../../tools/functions/login';
+import AuthFunctions from '../../tools/functions/auth';
 
 function Copyright() {
   return (
@@ -56,6 +57,12 @@ export default function SignIn() {
     password: ""
   });
   const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
+  const submitForm = (submitEvent: React.FormEvent) => {
+    submitEvent.preventDefault();
+    setAuthResult('processing');
+    const auth = AuthFunctions.login(credentials);
+    setAuthResult(auth);
+  }
 
   const handleChange = (evt: any) => {
     const newVal = evt.target.value;
@@ -75,11 +82,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={(t) => {
-          t.preventDefault();
-          const auth = login(credentials);
-          setAuthResult(auth);
-        }}>
+        <form className={classes.form} noValidate onSubmit={submitForm}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -113,7 +116,9 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            {
+              (authResult !== 'processing') ? 'Sign in' : <CircularProgress />
+            }
           </Button>
           <Grid container>
             <Grid item xs>
