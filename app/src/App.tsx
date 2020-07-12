@@ -6,8 +6,6 @@ import pink from '@material-ui/core/colors/pink';
 
 import SignIn from './pages/auth/SignIn';
 
-import './assets/styles/main.css';
-
 const theme = createMuiTheme({
   palette: {
     primary: {
