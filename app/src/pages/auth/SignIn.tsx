@@ -57,6 +57,7 @@ export default function SignIn() {
     password: ""
   });
   const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
+
   const submitForm = (submitEvent: React.FormEvent) => {
     submitEvent.preventDefault();
     setAuthResult('processing');
@@ -74,7 +75,6 @@ export default function SignIn() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOpenOutlinedIcon className={classes.avatarIcon} fontSize='large' />

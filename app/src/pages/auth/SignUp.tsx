@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import AuthFunctions from '../../tools/functions/auth';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -49,25 +51,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [newUserResult, setNewUserResult] = useState('waiting');
   const [details, setDetails] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: 0,
     password: "",
     cPassword: ""
   } as NewUser);
 
-  const handleChange = (evt: any) => {
-    const newVal = evt.target.value;
-    const key = evt.target.name;
+  const handleChange = (event: any) => {
+    const newVal = event.target.value;
+    const key = event.target.name;
     setDetails(prevState => {
       return { ...prevState, [key]: newVal }
     });
   }
 
+  const submitForm = (submitEvent: any) => {
+    submitEvent.preventDefault();
+    const result = AuthFunctions.signUp(submitEvent);
+    setNewUserResult(result);
+  }
+
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -75,10 +83,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={(e) => {
-          e.preventDefault();
-          console.log(details);
-        }}>
+        <form className={classes.form} noValidate onSubmit={submitForm}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
