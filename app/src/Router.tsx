@@ -11,6 +11,8 @@ import AuthRoute from './routers/AuthRoute';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 
+import Page404 from './pages/errors/404';
+
 function Loading() {
   return (
     <CenterContainer>
@@ -34,6 +36,8 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
+
+          <Route path='*' component={Page404} />
         </Switch>
       </Router>
     );
