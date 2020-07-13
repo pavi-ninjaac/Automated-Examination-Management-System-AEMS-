@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CenterContainer from './containers/CenterContainer';
 
 import ProtectedRoute from './routers/ProtectedRoute';
-import AuthRoute from './routers/AuthRouter';
+import AuthRoute from './routers/AuthRoute';
 
 function Loading() {
   return (

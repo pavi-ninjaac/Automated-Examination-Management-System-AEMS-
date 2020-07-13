@@ -1,4 +1,5 @@
 import axios from 'axios';
+import SessionValidity from '../constants/types/SessionValidity';
 
 const login = (credentials: UserCredentials): AuthResult => {
   console.log(credentials);
@@ -48,4 +49,22 @@ const signUp = (credentials: UserCredentials) => {
   return result;
 }
 
-export default { signUp, login };
+const validateSession = (): SessionValidity => {
+  if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
+  const session: User = JSON.parse(window.localStorage.getItem('stet-auth') as string);
+  let result: SessionValidity = 'waiting';
+  const sendRequest = async () => {
+    try {
+      const validationResult = axios.get('/api/validate-token', {
+        headers: { authorization: session.token }
+      });
+      result = 'valid';
+    } catch (err) {
+      result = 'invalid';
+    }
+  }
+  sendRequest();
+  return result;
+}
+
+export default { signUp, login, validateSession };

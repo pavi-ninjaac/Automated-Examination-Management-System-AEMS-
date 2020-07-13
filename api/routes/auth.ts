@@ -34,6 +34,8 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
       Logger.debug('Validating credentials...');
       await validateUser(newUser);
     } catch (validationError) {
+      // ! validation error object
+      // TODO: FIX: validationError object is sent as [Object] to response
       return res.status(200).send({ code: 409, message: 'validation error', details: validationError });
     }
 
@@ -44,11 +46,9 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
     // Store user to DB
     Logger.debug('Creating user...');
     const savedUser = await newUser.save();
-    if (savedUser === newUser) {
-      Logger.debug('User created.');
-      mail(undefined, savedUser.email, 'Account created', `<h1>Account created successfully</h1>`);
-      return res.status(201).json({ message: 'account created successfully' });
-    }
+    Logger.debug('User created.');
+    mail(undefined, savedUser.email, 'Account created', `<h1>Account created successfully</h1>`);
+    return res.status(201).json({ message: 'account created successfully' });
   } catch (err) {
     Logger.error(err);
     return res.sendStatus(500);
@@ -77,8 +77,8 @@ router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Res
   const { id: userId } = req.user;
   User.findByIdAndDelete(userId, (err, user) => {
     if (err) { return res.status(500).json({ message: 'error deleting user', details: err }); }
-    if (!user) { return res.status(500).json({ message: 'error deleting user', details: 'user not found' }); }
-    if (user._id === userId) { return res.status(200).json({ message: 'user deleted successfully' }); }
+    if (!user) { return res.status(200).json({ code: 406, message: 'error deleting user', details: 'user not found' }); }
+    return res.status(200).json({ message: 'user deleted successfully' });
   });
 });
 
