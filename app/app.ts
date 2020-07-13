@@ -10,12 +10,12 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
   router.use(express.static(path.resolve(__dirname, 'build')));
 
   // Serve the frontend
-  router.get('*', (req: any, res: any) => {
+  router.get('*', (req: express.Request, res: express.Response) => {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
   });
 } else {
   // Fallback for development environment
-  router.get('*', (req, res) => {
+  router.get('*', (req: express.Request, res: express.Response) => {
     res.send(`Development environment: can't access forward request.`);
   });
 }

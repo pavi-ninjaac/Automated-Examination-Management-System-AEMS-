@@ -7,6 +7,10 @@ import CenterContainer from './containers/CenterContainer';
 import ProtectedRoute from './routers/ProtectedRoute';
 import AuthRoute from './routers/AuthRoute';
 
+/* Pages */
+import SignIn from './pages/auth/SignIn';
+import SignUp from './pages/auth/SignUp';
+
 function Loading() {
   return (
     <CenterContainer>
@@ -19,20 +23,17 @@ function AppController() {
   const [auth, setAuth] = useState(false);
   const [load, setLoad] = useState(true);
 
-  const checkAuthentication = () => {
+  useEffect(() => {
     setAuth(!!window.localStorage.getItem('stet-auth'));
     setLoad(false);
-  }
-
-  useEffect(() => {
-    checkAuthentication();
   }, []);
 
   function AppRouter() {
     return (
       <Router>
         <Switch>
-
+          <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
+          <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
         </Switch>
       </Router>
     );
