@@ -10,7 +10,6 @@ import mail from '../middlewares/mailer';
 
 const router = express.Router();
 const URLParser = express.json();
-// const URLParser = express.raw();
 const saltRounds = 5;
 
 /* NEW USER */
@@ -109,18 +108,6 @@ router.post('/signin', URLParser, (req: express.Request, res: express.Response) 
   });
 });
 
-/* Logout :-> Non functional */
-router.get('/logout', verifyAuth, (req: express.Request | any, res) => {
-  Logger.debug('> Logout request');
-  if (!req.user) { return res.status(403).json({ message: 'not authenticated' }); }
-  generateAccessToken(req.user);
-  generateRefreshToken(req.user);
-  req.user = '';
-  req.headers['authorization'] = '';
-
-  return res.status(200).json({ message: 'logout successful' });
-});
-
 router.get('/details', verifyAuth, async (req: express.Request | any, res: express.Response) => {
   try {
     const loggedInUser = await User.findOne({ _id: req.user.id }, { password: 0, __v: 0 });
@@ -135,6 +122,6 @@ router.get('/validate-token', verifyAuth, (req: express.Request | any, res: expr
 
 router.get('*', (req, res) => {
   res.status(404).json({ message: 'unknown auth request' });
-})
+});
 
 export default router;

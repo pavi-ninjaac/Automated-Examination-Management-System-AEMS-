@@ -55,7 +55,7 @@ export default function SignUp() {
     phone: "",
     password: "",
     cPassword: ""
-  });
+  } as NewUser);
 
   const handleChange = (evt: any) => {
     const newVal = evt.target.value;
