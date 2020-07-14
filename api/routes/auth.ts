@@ -75,7 +75,7 @@ router.post('/update', URLParser, verifyAuth, async (req: express.Request | any,
 /* Delete a user account */
 router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Response) => {
   const { id: userId } = req.user;
-  User.findByIdAndDelete(userId, (err, user) => {
+  User.findByIdAndDelete(userId, (err, user: UserInterface | null) => {
     if (err) { return res.status(500).json({ message: 'error deleting user', details: err }); }
     if (!user) { return res.status(200).json({ code: 406, message: 'error deleting user', details: 'user not found' }); }
     return res.status(200).json({ message: 'user deleted successfully' });
@@ -110,6 +110,7 @@ router.post('/signin', URLParser, (req: express.Request, res: express.Response) 
 
 router.get('/details', verifyAuth, async (req: express.Request | any, res: express.Response) => {
   try {
+    // Finding the user and omitting password and __v
     const loggedInUser = await User.findOne({ _id: req.user.id }, { password: 0, __v: 0 });
     if (!loggedInUser) {
       return res.status(204).json({ message: 'error finding user' });

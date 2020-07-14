@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -117,7 +116,7 @@ export default function SignIn() {
             className={classes.submit}
           >
             {
-              (authResult !== 'processing') ? 'Sign in' : <CircularProgress />
+              (authResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign in'
             }
           </Button>
           <Grid container>
@@ -127,7 +126,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/auth/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

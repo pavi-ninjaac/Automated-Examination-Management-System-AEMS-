@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -13,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AuthFunctions from '../../tools/functions/auth';
 
@@ -70,7 +70,9 @@ export default function SignUp() {
 
   const submitForm = (submitEvent: any) => {
     submitEvent.preventDefault();
-    const result = AuthFunctions.signUp(submitEvent);
+    setNewUserResult('processing');
+    const result = AuthFunctions.signUp(details);
+    setNewUserResult('waiting');
     setNewUserResult(result);
   }
 
@@ -164,7 +166,9 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            {
+              (newUserResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign up'
+            }
           </Button>
           <Grid container justify="flex-end">
             <Grid item>

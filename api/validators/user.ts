@@ -8,7 +8,7 @@ const userValidationSchema = Joi.object({
     .required(),
 
   email: Joi.string().min(10).max(255).required()
-    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'in'] } }),
 
   phone: Joi.number().integer().max(9999999999).min(5555555555),
 

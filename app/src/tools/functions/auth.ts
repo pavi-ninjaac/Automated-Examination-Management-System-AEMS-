@@ -28,12 +28,12 @@ const login = (credentials: UserCredentials): AuthResult => {
   return result;
 }
 
-const signUp = (credentials: UserCredentials) => {
-  console.log(credentials);
+const signUp = (userDetails: NewUser) => {
+  console.log(userDetails);
   let result = 'processing';
   async function sendRequest() {
     try {
-      const response = await axios.get('/api/auth/register');
+      const response = await axios.post('/api/auth/register', userDetails);
       console.log(response.data);
       if (response.data.status === 201) {
         result = 'created'; return;
@@ -65,6 +65,10 @@ const validateSession = (): SessionValidity => {
   }
   sendRequest();
   return result;
+}
+
+const logout = (): void => {
+  window.localStorage.removeItem('stet-user');
 }
 
 export default { signUp, login, validateSession };
