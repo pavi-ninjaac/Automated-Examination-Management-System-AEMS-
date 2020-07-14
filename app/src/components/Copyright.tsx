@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography';
 export default function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright Â© '}
+      Copyright &copy; &nbsp;
       <Link color="inherit" to="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link> &nbsp;
       {new Date().getFullYear()}
       {'.'}
     </Typography>

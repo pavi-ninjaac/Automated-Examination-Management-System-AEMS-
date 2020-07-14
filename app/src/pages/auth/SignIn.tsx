@@ -14,6 +14,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
+import CenterContainer from '../../containers/CenterContainer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,69 +63,71 @@ export default function SignIn() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOpenOutlinedIcon className={classes.avatarIcon} fontSize='large' />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
+    <CenterContainer>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOpenOutlinedIcon className={classes.avatarIcon} fontSize='large' />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitForm}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            value={credentials.email}
-            onChange={handleChange}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            value={credentials.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            {
-              (authResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign in'
-            }
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/auth/forgot-password">
-                Forgot password?
+          <form className={classes.form} noValidate onSubmit={submitForm}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              value={credentials.email}
+              onChange={handleChange}
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              value={credentials.password}
+              onChange={handleChange}
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              {
+                (authResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign in'
+              }
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link to="/auth/forgot-password">
+                  Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link to="/auth/signup">
-                Don't have an account? Sign Up
+              </Grid>
+              <Grid item>
+                <Link to="/auth/signup">
+                  Don't have an account? Sign Up
               </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </CenterContainer>
   );
 }

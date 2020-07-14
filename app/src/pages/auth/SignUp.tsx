@@ -16,6 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
+import CenterContainer from '../../containers/CenterContainer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,111 +66,113 @@ export default function SignUp() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
+    <CenterContainer>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitForm}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="Name"
-                label="Name"
-                name="name"
-                onChange={handleChange}
-                autoComplete="name"
-              />
+          <form className={classes.form} noValidate onSubmit={submitForm}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="Name"
+                  label="Name"
+                  name="name"
+                  onChange={handleChange}
+                  autoComplete="name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  onChange={handleChange}
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  id="mobile"
+                  type="tel"
+                  label="Mobile Number"
+                  name="phone"
+                  onChange={handleChange}
+                  autoComplete="phone"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  name="cPassword"
+                  label="Confirm Password"
+                  type="password"
+                  onChange={handleChange}
+                  id="cPassword"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="verify" color="primary" />}
+                  label="Verify email right now"
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                onChange={handleChange}
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                id="mobile"
-                type="tel"
-                label="Mobile Number"
-                name="phone"
-                onChange={handleChange}
-                autoComplete="phone"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                onChange={handleChange}
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                name="cPassword"
-                label="Confirm Password"
-                type="password"
-                onChange={handleChange}
-                id="cPassword"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="verify" color="primary" />}
-                label="Verify email right now"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            {
-              (newUserResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign up'
-            }
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link to="/auth/signin">
-                Already have an account? Sign in
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              {
+                (newUserResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign up'
+              }
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link to="/auth/signin">
+                  Already have an account? Sign in
               </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </CenterContainer>
   );
 }
