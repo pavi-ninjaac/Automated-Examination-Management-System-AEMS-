@@ -1,0 +1,14 @@
+a {
+
+  &,
+  &:link,
+  &:visited {
+    font: inherit;
+    text-decoration: none;
+    color: #2196f3;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

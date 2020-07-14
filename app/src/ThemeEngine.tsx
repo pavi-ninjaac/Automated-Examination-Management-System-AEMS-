@@ -5,6 +5,7 @@ import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 
 import AppController from './Router';
+import './assets/css/main.min.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,12 +16,10 @@ const theme = createMuiTheme({
   }
 });
 
-function App() {
+export default function ThemeEngine() {
   return (
     <ThemeProvider theme={theme}>
       <AppController />
     </ThemeProvider>
   );
 }
-
-export default App;
