@@ -23,4 +23,4 @@ function register(formData: object) {
   return result;
 }
 
-export { register }
+export default { register }
