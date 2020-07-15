@@ -1,5 +1,4 @@
 import axios from 'axios';
-import SessionValidity from '../constants/types/SessionValidity';
 
 const login = (credentials: UserCredentials): AuthResult => {
   console.log(credentials);
@@ -55,7 +54,7 @@ const validateSession = (): SessionValidity => {
   let result: SessionValidity = 'waiting';
   const sendRequest = async () => {
     try {
-      const validationResult = axios.get('/api/validate-token', {
+      const validationResult = await axios.get('/api/validate-token', {
         headers: { authorization: session.token }
       });
       result = 'valid';
