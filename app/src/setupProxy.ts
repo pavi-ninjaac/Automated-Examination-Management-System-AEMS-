@@ -8,5 +8,5 @@ module.exports = function (app: any) {
       changeOrigin: true,
     })
   );
-  console.log('Proxying /api requests to :5000...');
+  console.log('Proxying /api requests to :5000/api...');
 };

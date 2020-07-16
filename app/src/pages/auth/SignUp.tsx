@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
+  }
 }));
 
 export default function SignUp() {
@@ -50,19 +50,16 @@ export default function SignUp() {
   } as NewUser);
 
   const handleChange = (event: any) => {
-    const newVal = event.target.value;
-    const key = event.target.name;
+    const { key, value } = event.target;
     setDetails(prevState => {
-      return { ...prevState, [key]: newVal }
+      return { ...prevState, [key]: value }
     });
   }
 
   const submitForm = (submitEvent: any) => {
     submitEvent.preventDefault();
     setNewUserResult('processing');
-    const result = AuthFunctions.signUp(details);
-    setNewUserResult('waiting');
-    setNewUserResult(result);
+    setNewUserResult(AuthFunctions.signUp(details));
   }
 
   return (
@@ -74,72 +71,51 @@ export default function SignUp() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
-        </Typography>
-          <form className={classes.form} noValidate onSubmit={submitForm}>
+          </Typography>
+          <form className={classes.form} onSubmit={submitForm}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="Name"
-                  label="Name"
-                  name="name"
+                  variant="outlined" id="Name" autoComplete="name"
+                  name="name" label="Name"
                   onChange={handleChange}
-                  autoComplete="name"
+                  required fullWidth
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
+                  variant="outlined" id="email" autoComplete="email"
                   label="Email Address"
                   name="email"
                   onChange={handleChange}
-                  autoComplete="email"
+                  fullWidth required
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
-                  size="small"
-                  required
-                  fullWidth
-                  id="mobile"
-                  type="tel"
+                  variant="outlined" size="small" id="mobile" type="tel" autoComplete="phone"
                   label="Mobile Number"
                   name="phone"
                   onChange={handleChange}
-                  autoComplete="phone"
+                  fullWidth required
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="outlined"
-                  size="small"
-                  required
-                  fullWidth
+                  variant="outlined" id="password" type="password" size="small" autoComplete="current-password"
                   name="password"
                   label="Password"
-                  type="password"
-                  id="password"
                   onChange={handleChange}
-                  autoComplete="current-password"
+                  required fullWidth
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="outlined"
-                  size="small"
-                  required
-                  fullWidth
+                  variant="outlined" type="password" size="small" id="cPassword"
                   name="cPassword"
                   label="Confirm Password"
-                  type="password"
                   onChange={handleChange}
-                  id="cPassword"
+                  required fullWidth
                 />
               </Grid>
               <Grid item xs={12}>
@@ -149,22 +125,18 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+            <Button type="submit" className={classes.submit}
+              variant="contained" color="primary" fullWidth>
               {
-                (newUserResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign up'
+                (newUserResult === 'processing') ?
+                  <CircularProgress color='secondary' size={20} /> : 'Sign up'
               }
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
                 <Link to="/auth/signin">
                   Already have an account? Sign in
-              </Link>
+                </Link>
               </Grid>
             </Grid>
           </form>

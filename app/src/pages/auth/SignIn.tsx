@@ -41,24 +41,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
   });
-  const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
 
   const submitForm = (submitEvent: React.FormEvent) => {
     submitEvent.preventDefault();
     setAuthResult('processing');
-    const auth = AuthFunctions.login(credentials);
-    setAuthResult(auth);
+    setAuthResult(AuthFunctions.login(credentials));
   }
 
-  const handleChange = (evt: any) => {
-    const newVal = evt.target.value;
-    const key = evt.target.name;
+  const handleChange = (event: any) => {
+    const { key, value } = event.target;
     setCredentials(prevState => {
-      return { ...prevState, [key]: newVal }
+      return { ...prevState, [key]: value }
     });
   }
 
@@ -74,30 +72,18 @@ export default function SignIn() {
         </Typography>
           <form className={classes.form} noValidate onSubmit={submitForm}>
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              variant="outlined" id="email" autoComplete="email"
+              name="email" label="Email Address"
               value={credentials.email}
               onChange={handleChange}
-              autoFocus
+              autoFocus required fullWidth
             />
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
+              variant="outlined" type="password" id="password" autoComplete="password"
+              name="password" label="Password"
               value={credentials.password}
               onChange={handleChange}
-              autoComplete="current-password"
+              fullWidth required
             />
             <Button
               type="submit"
