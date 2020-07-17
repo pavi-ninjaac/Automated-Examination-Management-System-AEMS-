@@ -21,8 +21,6 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-    "typescript": "^3.9.6",
-    "http-proxy-middleware": "^1.0.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -31,7 +29,10 @@
     "@types/react": "^16.9.38",
     "@types/react-bootstrap": "^1.0.1",
     "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "@types/yup": "^0.29.3",
+    "http-proxy-middleware": "^1.0.4",
+    "typescript": "^3.9.6"
   },
   "eslintConfig": {
     "extends": "react-app"
