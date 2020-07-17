@@ -19,9 +19,10 @@ window.self.addEventListener('install', (event: any) => {
 
 window.self.addEventListener('fetch', (event: any) => {
   event.respondWith(
-    caches.match(event.request).then((response: Response | undefined) => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request)
+      .then((response: Response | undefined) => {
+        return response || fetch(event.request);
+      })
   );
 });
 
