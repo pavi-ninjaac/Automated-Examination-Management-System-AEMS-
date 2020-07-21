@@ -3,8 +3,8 @@ export default {
   fatherName: '',
   motherName: '',
   spouseName: '',
-  maritalStatus: false,
-  sex: '',
+  maritalStatus: 'S',
+  sex: 'M',
   dateOfBirth: new Date(),
   placeOfBirth: '',
   native: '',
@@ -31,43 +31,30 @@ export default {
   identificationMarks: '',
 
   maxQualification: '',
-  SSLC: {
-    institute: '',
-    address: '',
-    percentage: 50,
-    dateOfPassing: new Date()
-  },
 
-  HSC: {
-    institute: '',
-    address: '',
-    percentage: 50,
-    dateOfPassing: new Date()
-  },
+  SSLC_institute: "",
+  SSLC_address: '',
+  SSLC_percentage: 50,
+  SSLC_dateOfPassing: new Date()
+  ,
+  HSC_institute: '',
+  HSC_address: '',
+  HSC_percentage: 50,
+  HSC_dateOfPassing: new Date(),
 
-  college: {
-    degree: '',
-    department: '',
-    institute: '',
-    university: '',
-    address: '',
-    percentage: 50,
-    dateOfPassing: new Date()
-  },
+  college_degree: '',
+  college_department: '',
+  college_institute: '',
+  college_university: '',
+  college_address: '',
+  college_percentage: 50,
+  college_dateOfPassing: new Date(),
 
-  documents: {
-    aadhaar: '',
-    voter: '',
-    SSLC: '',
-    HSC: '',
-    deg: '',
-    photo: '',
-    signature: ''
-  },
-
-  additionalDetails: {
-    isWorking: false,
-    readRR: false,
-    readPP: false,
-  }
+  documents_aadhaar: '',
+  documents_voter: '',
+  documents_SSLC: '',
+  documents_HSC: '',
+  documents_deg: '',
+  documents_photo: '',
+  documents_signature: '',
 }

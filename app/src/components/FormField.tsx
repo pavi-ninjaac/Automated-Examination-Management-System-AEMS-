@@ -7,8 +7,9 @@ export default function InputField(props: any) {
     <TextField variant="outlined"
       id={field}
       name={field}
+      style={{ margin: "1rem 0" }}
       label={label}
-      helperText={helper}
+      helperText={!!helper ? helper : null}
       {...rest}
       size={large ? "large" : "small"}
       fullWidth

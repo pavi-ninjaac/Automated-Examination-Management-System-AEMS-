@@ -10,6 +10,7 @@ import AuthRoute from './routers/AuthRoute';
 /* Pages */
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
+import Application from './pages/client/Registration/Registration';
 
 import Page404 from './pages/errors/404';
 
@@ -36,6 +37,8 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
+
+          <Route path='/registration' exact component={Application} />
 
           <Route path='*' component={Page404} />
         </Switch>
