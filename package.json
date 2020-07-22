@@ -30,7 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.19",
     "nodemailer": "^6.4.10",
-    "ts-node": "^8.10.2"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -41,7 +42,6 @@
     "@types/mongoose": "^5.7.27",
     "@types/nodemailer": "^6.4.0",
     "dotenv": "^8.2.0",
-    "js-logger": "^1.6.0",
-    "typescript": "^3.9.6"
+    "js-logger": "^1.6.0"
   }
 }
