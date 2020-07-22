@@ -31,9 +31,7 @@
     "mongoose": "^5.9.19",
     "nodemailer": "^6.4.10",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.6"
-  },
-  "devDependencies": {
+    "typescript": "^3.9.6",
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
@@ -43,5 +41,6 @@
     "@types/nodemailer": "^6.4.0",
     "dotenv": "^8.2.0",
     "js-logger": "^1.6.0"
-  }
+  },
+  "devDependencies": {}
 }
