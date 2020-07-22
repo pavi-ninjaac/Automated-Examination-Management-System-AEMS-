@@ -25,9 +25,9 @@ router.post('/new', JSONParser, verifyAuth, async (req: express.Request | any, r
   try {
     Logger.debug('> Requesting new application submission...');
     if (typeof req.body.dateOfBirth === 'string') {
-      req.body.SSLC.dateOfPassing = new Date(req.body.dateOfPassing);
-      req.body.HSC.dateOfPassing = new Date(req.body.dateOfPassing);
-      req.body.college.dateOfPassing = new Date(req.body.dateOfPassing);
+      req.body.SSLC.dateOfPassing = new Date(req.body.SSLC.dateOfPassing);
+      req.body.HSC.dateOfPassing = new Date(req.body.HSC.dateOfPassing);
+      req.body.college.dateOfPassing = new Date(req.body.college.dateOfPassing);
     }
     const application = new Application({ _user: req.user.id, ...req.body });
     const regRes = application.save();
