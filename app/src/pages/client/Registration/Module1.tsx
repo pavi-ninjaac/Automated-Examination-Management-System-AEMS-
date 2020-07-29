@@ -15,7 +15,7 @@ export default function Module1({ controller: formik, generateBunch }: any) {
         <Select
           labelId="sex"
           id="sex"
-          label="Sex"{...formik.getFieldProps('sex')} >
+          label="Sex"{...formik.getFieldProps('sex')}>
           <MenuItem value={"M"}>Male</MenuItem>
           <MenuItem value={"F"}>Female</MenuItem>
           <MenuItem value={"T"}>Transgender</MenuItem>
@@ -40,7 +40,9 @@ export default function Module1({ controller: formik, generateBunch }: any) {
         label="Birthday"
         type="date"
         variant="outlined"
-        defaultValue="2000-05-24" />
+        defaultValue="2000-05-24"
+        {...formik.getFieldProps('dateOfBirth')}
+      />
     </>
   );
 }

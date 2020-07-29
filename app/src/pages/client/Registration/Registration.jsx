@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import { Button, Container, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
 import { useFormik } from 'formik';
-
-import { Button, Container, Typography, InputLabel, MenuItem, FormControl, FormLabel, Select, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
-
+import React, { useState } from 'react';
 import InputField from '../../../components/FormField';
 import FormController from '../../../tools/functions/formController';
-
+import initialValues from './initialValues';
 import Module1 from './Module1';
 import Module2 from './Module2';
-
-import initialValues from './initialValues';
 import validationSchema from './validationSchema';
 
 export default function Registration() {
@@ -22,13 +18,13 @@ export default function Registration() {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: submitForm
+    onSubmit: (vals) => { console.log('formik sucks') }
   });
 
   function generateBunch({ field, label, helper }) {
     // let { field, label, helper } = value;
     return (
-      <InputField field={field} label={label}
+      <InputField field={field} label={label} key={field}
         helperText={(formik.touched[field] && formik.errors[field] !== undefined) ? formik.errors[field] : helper}
         error={formik.touched[field] && formik.errors[field] !== undefined}
         {...formik.getFieldProps(field)} />
@@ -44,21 +40,21 @@ export default function Registration() {
         <Module1 controller={formik} generateBunch={generateBunch} />
         <Module2 controller={formik} generateBunch={generateBunch} />
         {[
-          { field: 'motherTongue', label: 'Mother Tongue', helper: 'Seperate languages with comma' },
-          { field: 'knownLanguages', label: 'Known Tongue', helper: 'Seperate languages with comma' }
+          { field: 'motherTongue', label: 'Mother Tongue', helper: 'Separate languages with comma' },
+          { field: 'knownLanguages', label: 'Known Tongue', helper: 'Separate languages with comma' }
         ].map(generateBunch)}
         <FormLabel component="legend">Is the applicant different-abled?</FormLabel>
-        <RadioGroup row aria-label="isDisabled" name="isDisabled" defaultValue="yes">
+        <RadioGroup row aria-label="isDisabled" name="isDisabled" defaultValue="yes" {...formik.getFieldProps("isDisabled")}>
           <FormControlLabel value={"yes"} control={<Radio color="primary" />} label="Yes" />
           <FormControlLabel value={"no"} control={<Radio color="primary" />} label="No" />
         </RadioGroup>
         <FormLabel component="legend">Does the applicant has any criminal records?</FormLabel>
-        <RadioGroup row aria-label="isCriminal" name="isCriminal" defaultValue="yes">
+        <RadioGroup row aria-label="isCriminal" name="isCriminal" defaultValue="yes" {...formik.getFieldProps("isCriminal")}>
           <FormControlLabel value={"yes"} control={<Radio color="primary" />} label="Yes" />
           <FormControlLabel value={"no"} control={<Radio color="primary" />} label="No" />
         </RadioGroup>
         <FormLabel component="legend">Is the applicant's father/ direct relation an ex-serviceman?</FormLabel>
-        <RadioGroup row aria-label="isExServiceMan" name="isExServiceMan" defaultValue="yes">
+        <RadioGroup row aria-label="isExServiceMan" defaultValue="yes" {...formik.getFieldProps("isExServiceMan")}>
           <FormControlLabel value={"yes"} control={<Radio color="primary" />} label="Yes" />
           <FormControlLabel value={"no"} control={<Radio color="primary" />} label="No" />
         </RadioGroup>
@@ -85,7 +81,10 @@ export default function Registration() {
         <hr />
         <FormLabel component="legend">College</FormLabel>
         {[
+          { field: 'college_degree', label: 'Degree' },
+          { field: 'college_department', label: 'Department' },
           { field: 'college_institute', label: 'Institute' },
+          { field: 'college_university', label: 'University' },
           { field: 'college_address', label: 'Address' },
           { field: 'college_percentage', label: 'Percentage' },
           { field: 'college_dateOfPassing', label: 'Date of passing' },
@@ -107,7 +106,7 @@ export default function Registration() {
         </Button>
       </form>
     </Container>
-  )
+  );
 }
 
 

@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const applicationSchema = new Schema({
   _user: { type: mongoose.Types.ObjectId, required: true, unique: true },
+  isVerified: { type: Boolean, required: true, default: false },
 
   name: { type: String, trim: true, required: true },
   fatherName: { type: String, trim: true, required: true },
