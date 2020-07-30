@@ -61,9 +61,9 @@ function register(formData) {
     dateOfPassing: formData.college_dateOfPassing
   }
   reqBody.additionalDetails = {
-    isWorking: formData.isWorking | true,
-    readRR: formData.readRR | true,
-    readPP: formData.readPP | true,
+    isWorking: formData.isWorking || true,
+    readRR: formData.readRR || true,
+    readPP: formData.readPP || true,
   }
   additional.forEach(aa => {
     delete reqBody[aa];
