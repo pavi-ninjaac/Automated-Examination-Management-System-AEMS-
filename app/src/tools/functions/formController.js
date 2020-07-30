@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 function register(formData) {
-  /*
   console.log(formData);
+  /*
   if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
   const session = JSON.parse(window.localStorage.getItem('stet-auth') as string);
   let result = 'waiting';
@@ -63,6 +63,11 @@ function register(formData) {
     percentage: formData.college_percentage,
     dateOfPassing: formData.college_dateOfPassing
   }
+  reqBody.additionalDetails = {
+    isWorking: formData.isWorking,
+    readRR: formData.readRR,
+    readPP: formData.readPP,
+  }
 
   const sendRequest = async () => {
     try {
@@ -83,7 +88,7 @@ function register(formData) {
   return result;
   */
 
-  // return 'ok';
+  return 'ok';
 }
 
 export default { register }
