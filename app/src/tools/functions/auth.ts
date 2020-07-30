@@ -16,7 +16,7 @@ const login = (credentials: UserCredentials): AuthResult => {
         token: response.data.accessToken
       }
       result = userDetails;
-      window.localStorage.setItem('stet-user', JSON.stringify(result));
+      window.localStorage.setItem('stetUser', JSON.stringify(result));
     }
     catch (err) {
       console.log(err);
@@ -49,8 +49,8 @@ const signUp = (userDetails: NewUser) => {
 }
 
 const validateSession = (): SessionValidity => {
-  if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
-  const session: User = JSON.parse(window.localStorage.getItem('stet-auth') as string);
+  if (!window.localStorage.getItem('stetUser')) { return 'no-session' }
+  const session: User = JSON.parse(window.localStorage.getItem('stetUser') as string);
   let result: SessionValidity = 'waiting';
   const sendRequest = async () => {
     try {
@@ -67,7 +67,7 @@ const validateSession = (): SessionValidity => {
 }
 
 const logout = (): void => {
-  window.localStorage.removeItem('stet-user');
+  window.localStorage.removeItem('stetUser');
 }
 
 export default { signUp, login, validateSession };

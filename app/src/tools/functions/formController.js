@@ -2,8 +2,8 @@ import axios from 'axios';
 
 function register(formData) {
   console.log(formData);
-  // if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
-  const session = JSON.parse(window.localStorage.getItem('stet-auth'));
+  if (!window.localStorage.getItem('stetUser')) { return 'no-session' }
+  const session = JSON.parse(window.localStorage.getItem('stetUser'));
   let result = 'waiting';
   let reqBody = formData;
   const additional = [
@@ -72,6 +72,7 @@ function register(formData) {
 
   const sendRequest = async () => {
     try {
+      console.log('Sending request...', session);
       const response = await axios.post('/api/application/new', reqBody, {
         headers: { authorization: session.token }
       });
@@ -85,6 +86,7 @@ function register(formData) {
     }
   }
   sendRequest();
+  console.log(result);
 
   return result;
 }

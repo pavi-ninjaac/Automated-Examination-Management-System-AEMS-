@@ -20,7 +20,9 @@ const generateRefreshToken = ({ _id: id, email }: UserInterface): string =>
   jwt.sign({ id, email } as UserPayload, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d', issuer });
 
 const validateToken = (authHeader: any): JWTValidationResult => {
-  const token = authHeader && authHeader.split(' ')[1];
+  Logger.debug('Validating token...');
+  const token = (authHeader && authHeader.split(' ')[1]) || authHeader;
+  Logger.debug(token);
   if (token == null) { return { status: 401, message: 'access token is not found' } }
 
   let result: JWTValidationResult = { status: 500, message: 'error validating token' };

@@ -29,9 +29,9 @@ const applicationSchema = new Schema({
   motherTongue: { type: String, required: true },
   knownLanguages: { type: String },
 
-  isDisabled: { type: Boolean, default: false },
-  isCriminal: { type: Boolean, default: false },
-  isExServiceMan: { type: Boolean, default: false },
+  isDisabled: { type: String, default: 'no' },
+  isCriminal: { type: String, default: 'no' },
+  isExServiceMan: { type: String, default: 'no' },
 
   identificationMarks: { type: String, required: true },
 

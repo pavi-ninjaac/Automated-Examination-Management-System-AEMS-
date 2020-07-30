@@ -27,7 +27,7 @@ function AppController() {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    setAuth(!!window.localStorage.getItem('stet-auth'));
+    // setAuth(!!window.localStorage.getItem('stetUser'));
     setLoad(false);
   }, []);
 
