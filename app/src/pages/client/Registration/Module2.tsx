@@ -14,7 +14,7 @@ export default function Module2({ controller: formik, generateBunch }: any) {
     { field: 'presentAddress', label: 'Present Address' },
     { field: 'aadhaarNo', label: 'Aadhaar ID' },
     { field: 'voterId', label: 'Voter ID' },
-  ]
+  ];
   return (
     <>
       {placeGroup.map(generateBunch)}
