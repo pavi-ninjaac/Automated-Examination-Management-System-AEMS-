@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import axios from 'axios';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CenterContainer from './containers/CenterContainer';
 
@@ -28,7 +30,17 @@ function AppController() {
 
   useEffect(() => {
     // setAuth(!!window.localStorage.getItem('stetUser'));
-    setLoad(false);
+    axios.get('/api/auth/validate-token', {
+      headers: { authorization: window.localStorage.getItem('stetUser') }
+    })
+      .then((res) => {
+        setAuth(true);
+        setLoad(false);
+      })
+      .catch((err) => {
+        setAuth(false);
+        setLoad(false);
+      });
   }, []);
 
   function AppRouter() {

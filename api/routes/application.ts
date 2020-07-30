@@ -71,4 +71,16 @@ router.delete('/delete', JSONParser, verifyAuth, async (req: express.Request | a
   }
 });
 
+/* Get all applications */
+
+router.get('/all', async (req: any, res: any) => {
+  try {
+    Logger.debug('Getting all applications...');
+    const applications = await Application.find({});
+    return res.status(200).send(applications);
+  } catch {
+    return res.status(500);
+  }
+})
+
 export default router;

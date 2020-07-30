@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, Paper } from "@material-ui/core";
 
-function Card(props) {
+function Card(props: any) {
   return (
     <div>
       <Paper elevation={3} style={props.style}>

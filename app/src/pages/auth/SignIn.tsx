@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -46,6 +46,12 @@ export default function SignIn() {
     email: "",
     password: ""
   });
+
+  useEffect(() => {
+    if (typeof authResult === 'object') {
+      window.open('/registration', '_self');
+    }
+  }, [authResult]);
 
   const submitForm = async (submitEvent: React.FormEvent) => {
     submitEvent.preventDefault();
