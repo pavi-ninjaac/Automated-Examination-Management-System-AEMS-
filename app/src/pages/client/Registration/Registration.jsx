@@ -10,8 +10,8 @@ import validationSchema from './validationSchema';
 
 export default function Registration() {
   const [status, setStatus] = useState('');
-  const submitForm = (values) => {
-    setStatus(FormController.register(values));
+  const submitForm = async (values) => {
+    setStatus(await FormController.register(values));
   }
 
   const formik = useFormik({

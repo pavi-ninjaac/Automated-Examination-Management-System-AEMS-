@@ -47,10 +47,10 @@ export default function SignIn() {
     password: ""
   });
 
-  const submitForm = (submitEvent: React.FormEvent) => {
+  const submitForm = async (submitEvent: React.FormEvent) => {
     submitEvent.preventDefault();
     setAuthResult('processing');
-    setAuthResult(AuthFunctions.login(credentials));
+    setAuthResult((await AuthFunctions.login(credentials)) as AuthResult);
   }
 
   const handleChange = (event: any) => {

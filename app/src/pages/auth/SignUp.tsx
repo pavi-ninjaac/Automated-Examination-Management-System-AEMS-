@@ -56,10 +56,10 @@ export default function SignUp() {
     });
   }
 
-  const submitForm = (submitEvent: any) => {
+  const submitForm = async (submitEvent: any) => {
     submitEvent.preventDefault();
     setNewUserResult('processing');
-    setNewUserResult(AuthFunctions.signUp(details));
+    setNewUserResult((await AuthFunctions.signUp(details)) as string);
   }
 
   return (

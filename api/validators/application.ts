@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi';
 
 const applicationValidationSchema = Joi.object({
+  roll: Joi.string().min(3).max(30).required(),
   name: Joi.string().min(3).max(30).required(),
   fatherName: Joi.string().min(3).max(30).required(),
   motherName: Joi.string().min(3).max(30),
