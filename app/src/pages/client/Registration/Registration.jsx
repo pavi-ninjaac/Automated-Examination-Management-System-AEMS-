@@ -11,18 +11,16 @@ import validationSchema from './validationSchema';
 export default function Registration() {
   const [status, setStatus] = useState('');
   const submitForm = (values) => {
-    console.log(values);
     setStatus(FormController.register(values));
   }
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (vals) => { console.log('formik sucks') }
+    onSubmit: submitForm
   });
 
   function generateBunch({ field, label, helper }) {
-    // let { field, label, helper } = value;
     return (
       <InputField field={field} label={label} key={field}
         helperText={(formik.touched[field] && formik.errors[field] !== undefined) ? formik.errors[field] : helper}
@@ -92,7 +90,7 @@ export default function Registration() {
         <hr />
         <FormLabel component="legend">Documents</FormLabel>
         {[
-          { field: 'documents_aadhar', label: 'Aadhar' },
+          { field: 'documents_aadhaar', label: 'Aadhar' },
           { field: 'documents_voter', label: 'Voter' },
           { field: 'documents_SSLC', label: 'SSLC' },
           { field: 'documents_HSC', label: 'HSC' },

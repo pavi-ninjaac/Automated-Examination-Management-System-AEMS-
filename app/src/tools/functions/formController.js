@@ -2,9 +2,8 @@ import axios from 'axios';
 
 function register(formData) {
   console.log(formData);
-  /*
-  if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
-  const session = JSON.parse(window.localStorage.getItem('stet-auth') as string);
+  // if (!window.localStorage.getItem('stet-auth')) { return 'no-session' }
+  const session = JSON.parse(window.localStorage.getItem('stet-auth'));
   let result = 'waiting';
   let reqBody = formData;
   const additional = [
@@ -31,9 +30,6 @@ function register(formData) {
     'documents_photo',
     'documents_signature'
   ]
-  additional.forEach(aa => {
-    delete reqBody[aa];
-  });
   reqBody.SSLC = {
     institute: formData.SSLC_institute,
     address: formData.SSLC_address,
@@ -46,7 +42,8 @@ function register(formData) {
     percentage: formData.HSC_percentage,
     dateOfPassing: formData.HSC_dateOfPassing
   }
-  reqBody.college = {
+  reqBody.documents = {
+    aadhaar: formData.documents_aadhaar,
     voter: formData.documents_voter,
     SSLC: formData.documents_SSLC,
     HSC: formData.documents_HSC,
@@ -54,7 +51,7 @@ function register(formData) {
     photo: formData.documents_photo,
     signature: formData.documents_signature
   }
-  reqBody.documents = {
+  reqBody.college = {
     degree: formData.college_degree,
     department: formData.college_department,
     institute: formData.college_institute,
@@ -64,10 +61,14 @@ function register(formData) {
     dateOfPassing: formData.college_dateOfPassing
   }
   reqBody.additionalDetails = {
-    isWorking: formData.isWorking,
-    readRR: formData.readRR,
-    readPP: formData.readPP,
+    isWorking: formData.isWorking | true,
+    readRR: formData.readRR | true,
+    readPP: formData.readPP | true,
   }
+  additional.forEach(aa => {
+    delete reqBody[aa];
+  });
+  console.log(reqBody);
 
   const sendRequest = async () => {
     try {
@@ -86,9 +87,6 @@ function register(formData) {
   sendRequest();
 
   return result;
-  */
-
-  return 'ok';
 }
 
 export default { register }

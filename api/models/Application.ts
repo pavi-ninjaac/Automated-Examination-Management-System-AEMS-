@@ -8,7 +8,7 @@ const applicationSchema = new Schema({
   fatherName: { type: String, trim: true, required: true },
   motherName: { type: String, trim: true },
   spouseName: { type: String, trim: true },
-  maritalStatus: { type: Boolean },
+  maritalStatus: { type: String },
   sex: { type: String, required: true },
   dateOfBirth: { type: Date, required: true },
   placeOfBirth: { type: String },
@@ -71,9 +71,9 @@ const applicationSchema = new Schema({
   },
 
   additionalDetails: {
-    isWorking: { type: Boolean, required: true, default: false },
-    readRR: { type: Boolean, required: true, default: true },
-    readPP: { type: Boolean, required: true, default: true },
+    isWorking: { type: String, required: true, default: false },
+    readRR: { type: String, required: true, default: true },
+    readPP: { type: String, required: true, default: true },
   }
 }, {
   timestamps: true

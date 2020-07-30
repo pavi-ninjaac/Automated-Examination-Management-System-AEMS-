@@ -50,9 +50,9 @@ export default function SignUp() {
   } as NewUser);
 
   const handleChange = (event: any) => {
-    const { key, value } = event.target;
+    const { name, value } = event.target;
     setDetails(prevState => {
-      return { ...prevState, [key]: value }
+      return { ...prevState, [name]: value }
     });
   }
 

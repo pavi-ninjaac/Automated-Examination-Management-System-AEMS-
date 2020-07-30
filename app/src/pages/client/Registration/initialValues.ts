@@ -3,14 +3,14 @@ export default {
   fatherName: '',
   motherName: '',
   spouseName: '',
-  maritalStatus: 'S',
-  sex: 'M',
+  maritalStatus: 'Unmarried',
+  sex: 'Male',
   dateOfBirth: new Date(),
   placeOfBirth: '',
   native: '',
-  religion: '',
-  caste: '',
-  nationality: '',
+  religion: 'Hindu',
+  caste: 'BC',
+  nationality: 'Indian',
 
   mobileNumber: 5555555555,
   email: '',
@@ -24,15 +24,15 @@ export default {
   motherTongue: '',
   knownLanguages: '',
 
-  isDisabled: false,
-  isCriminal: false,
-  isExServiceMan: false,
+  isDisabled: 'no',
+  isCriminal: 'no',
+  isExServiceMan: 'no',
 
   identificationMarks: '',
 
   maxQualification: '',
 
-  SSLC_institute: "",
+  SSLC_institute: '',
   SSLC_address: '',
   SSLC_percentage: 50,
   SSLC_dateOfPassing: new Date()

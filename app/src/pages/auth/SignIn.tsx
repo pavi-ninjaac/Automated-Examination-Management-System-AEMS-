@@ -54,9 +54,9 @@ export default function SignIn() {
   }
 
   const handleChange = (event: any) => {
-    const { key, value } = event.target;
+    const { name, value } = event.target;
     setCredentials(prevState => {
-      return { ...prevState, [key]: value }
+      return { ...prevState, [name]: value }
     });
   }
 

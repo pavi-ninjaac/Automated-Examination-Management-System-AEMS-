@@ -16,9 +16,9 @@ export default function Module1({ controller: formik, generateBunch }: any) {
           labelId="sex"
           id="sex"
           label="Sex"{...formik.getFieldProps('sex')}>
-          <MenuItem value={"M"}>Male</MenuItem>
-          <MenuItem value={"F"}>Female</MenuItem>
-          <MenuItem value={"T"}>Transgender</MenuItem>
+          <MenuItem value={"Male"}>Male</MenuItem>
+          <MenuItem value={"Female"}>Female</MenuItem>
+          <MenuItem value={"Transgender"}>Transgender</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined">
@@ -28,8 +28,8 @@ export default function Module1({ controller: formik, generateBunch }: any) {
           id="maritalStatus"
           label="Marital status"
           {...formik.getFieldProps('maritalStatus')} >
-          <MenuItem value={"M"}>Married</MenuItem>
-          <MenuItem value={"S"}>Unmarried</MenuItem>
+          <MenuItem value={"Married"}>Married</MenuItem>
+          <MenuItem value={"Unmarried"}>Unmarried</MenuItem>
         </Select>
       </FormControl>
       {generateBunch({

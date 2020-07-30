@@ -22,10 +22,10 @@ export default function Module2({ controller: formik, generateBunch }: any) {
         <InputLabel id="religion">Religion</InputLabel>
         <Select labelId="religion" id="religion" label="Religion"
           {...formik.getFieldProps('religion')}>
-          <MenuItem value={"H"}>Hindu</MenuItem>
-          <MenuItem value={"C"}>Christian</MenuItem>
-          <MenuItem value={"M"}>Muslim</MenuItem>
-          <MenuItem value={"O"}>Other</MenuItem>
+          <MenuItem value={"Hindu"}>Hindu</MenuItem>
+          <MenuItem value={"Christian"}>Christian</MenuItem>
+          <MenuItem value={"Muslim"}>Muslim</MenuItem>
+          <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined">
