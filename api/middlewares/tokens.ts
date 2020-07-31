@@ -12,7 +12,7 @@ interface JWTValidationResult {
 const issuer = '@KrishnaMoorthy12'
 
 const generateAccessToken = ({ _id: id, email, type }: UserInterface): string =>
-  jwt.sign({ id, email, type } as UserPayload, (process.env.ACCESS_TOKEN_SECRET as string), { expiresIn: '30m', issuer });
+  jwt.sign({ id, email, type } as UserPayload, (process.env.ACCESS_TOKEN_SECRET as string), { expiresIn: '1h', issuer });
 
 const generateRefreshToken = ({ _id: id, email, type }: UserInterface): string =>
   jwt.sign({ id, email, type } as UserPayload, (process.env.REFRESH_TOKEN_SECRET as string), { expiresIn: '1d', issuer });
