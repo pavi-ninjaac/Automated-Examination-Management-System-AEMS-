@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { TextField, InputLabel, MenuItem, FormControl, Select, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 
 export default function Module1({ controller: formik, generateBunch }: any) {
   const nameGroup = [
@@ -9,6 +9,11 @@ export default function Module1({ controller: formik, generateBunch }: any) {
   ];
   return (
     <>
+      <RadioGroup row aria-label="Role" name="role" defaultValue="Primary" {...formik.getFieldProps("role")}>
+        <FormControlLabel value={"Primary"} control={<Radio color="primary" />} label="Primary" />
+        <FormControlLabel value={"Middle"} control={<Radio color="primary" />} label="Middle" />
+        <FormControlLabel value={"High"} control={<Radio color="primary" />} label="High" />
+      </RadioGroup>
       {nameGroup.map(generateBunch)}
       <FormControl variant="outlined">
         <InputLabel id="sex">Sex</InputLabel>

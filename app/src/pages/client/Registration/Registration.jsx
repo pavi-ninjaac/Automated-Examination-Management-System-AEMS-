@@ -11,8 +11,15 @@ import validationSchema from './validationSchema';
 export default function Registration() {
   const [status, setStatus] = useState('');
   const submitForm = async (values) => {
+    setStatus('processing');
     setStatus(await FormController.register(values));
   }
+
+  useEffect(() => {
+    if (status === 'application submitted successfully') {
+      window.open('/', '_self');
+    }
+  }, [status]);
 
   const formik = useFormik({
     initialValues,
@@ -99,15 +106,15 @@ export default function Registration() {
           { field: 'documents_signature', label: 'Signature' }
         ].map(generateBunch)}
 
-        <Button variant="contained" color="default" type='submit'>
-          Submit
+
+        <Button type="submit" className={classes.submit}
+          variant="contained" color="primary">
+          {
+            (status === 'processing') ?
+              <CircularProgress color='secondary' size={20} /> : 'Sign up'
+          }
         </Button>
       </form>
     </Container>
   );
 }
-
-
-//             {...formik.getFieldProps("name")}
-//             helperText={formik.touched.name && formik.errors.name}
-//             error={formik.touched.name && formik.errors.name !== undefined}

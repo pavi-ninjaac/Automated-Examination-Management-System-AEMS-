@@ -32,7 +32,7 @@ router.post('/new', JSONParser, verifyAuth, async (req: express.Request | any, r
     const application = new Application({ _user: req.user.id, ...req.body });
     const regRes = application.save();
     if (!regRes) { throw new Error('error posting application'); }
-    return res.status(200).json({ message: 'application submitted successfully.' });
+    return res.status(200).json({ message: 'application submitted successfully' });
   } catch (err) {
     Logger.error(err);
     return res.status(500).json({ message: 'could not process request', err });

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const login = async (credentials) => {
   console.log(credentials);
-  let result = 'init';
+  let result = 'processing';
   try {
     const response = await axios.post('/api/auth/signin', credentials);
     console.log(response.data);

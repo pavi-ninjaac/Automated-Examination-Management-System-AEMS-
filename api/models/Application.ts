@@ -4,7 +4,7 @@ const applicationSchema = new Schema({
   _user: { type: mongoose.Types.ObjectId, required: true, unique: true },
   isVerified: { type: Boolean, required: true, default: false },
 
-  roll: { type: String, trim: true, required: true },
+  role: { type: String, trim: true, required: true },
   name: { type: String, trim: true, required: true },
   fatherName: { type: String, trim: true, required: true },
   motherName: { type: String, trim: true },

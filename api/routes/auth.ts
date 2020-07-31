@@ -49,7 +49,7 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
     const savedUser = await newUser.save();
     Logger.debug('User created.');
     mail(undefined, savedUser.email, 'Account created', `<h1>Account created successfully</h1>`);
-    return res.status(201).json({ message: 'account created successfully' });
+    return res.status(201).send('account created successfully');
   } catch (err) {
     Logger.error(err);
     return res.sendStatus(500);

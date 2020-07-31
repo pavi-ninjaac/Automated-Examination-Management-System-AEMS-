@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export default Yup.object({
+  role: Yup.string().required(),
   name: Yup.string().min(3).max(30).required(),
   fatherName: Yup.string().min(3).max(30).required(),
   motherName: Yup.string().min(3).max(30),
