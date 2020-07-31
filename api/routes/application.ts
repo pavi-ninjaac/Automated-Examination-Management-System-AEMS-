@@ -1,7 +1,7 @@
 import express from 'express';
 import Logger from 'js-logger';
 
-import Application from '../models/Application';
+import Application, { applicationSchema } from '../models/Application';
 import verifyAuth from '../middlewares/verifyAuth';
 
 const router = express.Router();
@@ -77,11 +77,40 @@ router.get('/all', verifyAuth, async (req: any, res: any) => {
   if (req.user.type !== 'admin') { return res.status(401).json({ message: 'not admin' }) }
   try {
     Logger.debug('Getting all applications...');
-    const applications = await Application.find({});
+    const applications = await Application.find({}, { __v: 0 });
     return res.status(200).send(applications);
   } catch {
     return res.status(500);
   }
-})
+});
+
+router.get('/:id', verifyAuth, async (req: any, res: any) => {
+  try {
+    Logger.debug('Getting the application...');
+    const application = await Application.findOne({ _id: req.params.id }, { __v: 0 });
+    if (!application) { return res.status(200).send({ message: 'not found' }); }
+    if (req.user.type !== 'admin' && req.user.id != application.toObject()._user) {
+      Logger.debug('Req:', req.user.id);
+      Logger.debug('Res:', application.toObject()._user);
+      return res.status(401).json({ message: 'not admin' });
+    }
+    return res.status(200).send(application);
+  } catch {
+    return res.status(500);
+  }
+});
+
+router.get('/:user', verifyAuth, async (req: any, res: any) => {
+  try {
+    Logger.debug('Getting the application...');
+    if (req.user.type !== 'admin' || req.user.id !== req.params.user) { return res.status(401).json({ message: 'not admin' }) }
+    const applications = await Application.findOne({ _user: req.params.user }, { __v: 0 });
+    if (!applications) { return res.status(200).send({ message: 'not found' }); }
+    return res.status(200).send(applications);
+  } catch {
+    return res.status(500);
+  }
+});
+
 
 export default router;
