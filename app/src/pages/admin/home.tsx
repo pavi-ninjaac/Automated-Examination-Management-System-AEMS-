@@ -7,24 +7,28 @@ import Table from "../../components/table";
 import AdminFunctions from '../../tools/functions/applications';
 
 export default function AdminPage() {
-  const [applications, setApplications] = useState({});
+  const [applications, setApplications] = useState([]);
+  const [verified, setVerified] = useState([]);
+  const [unverified, setUnverified] = useState([]);
 
   useEffect(() => {
     AdminFunctions.getAll().then((apps) => {
-      console.log(apps); setApplications(apps)
+      console.log(apps); setApplications(apps);
+      setVerified(apps.filter((appl: any) => appl.isVerified));
+      setUnverified(apps.filter((appl: any) => !appl.isVerified));
     }).catch(err => console.log(err));
-  }, [])
+  }, []);
 
   return (
     <React.Fragment>
       <Container>
-        <Typography variant='h2' component='h1'>
+        <Typography variant='h2' component='h1' style={{ marginBottom: '2rem' }}>
           STET Admin
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4}>
             <Card
-              no={12}
+              no={applications.length}
               name={"Submitted"}
               style={{
                 backgroundColor: "dodgerblue",
@@ -35,7 +39,7 @@ export default function AdminPage() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card
-              no={12}
+              no={verified.length}
               name={"Verified"}
               style={{
                 backgroundColor: "#009688",
@@ -46,7 +50,7 @@ export default function AdminPage() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card
-              no={12}
+              no={unverified.length}
               name={"Unverified"}
               style={{
                 backgroundColor: "#ff1744",
@@ -70,9 +74,9 @@ export default function AdminPage() {
         </Grid>
         <div style={{ marginTop: "2rem" }}>
           <Typography variant="h5" component="p" style={{ marginBottom: "1rem" }}>
-            User Details
-        </Typography>
-          <Table />
+            Submitted forms
+          </Typography>
+          <Table rows={applications} />
         </div>
       </Container>
     </React.Fragment>

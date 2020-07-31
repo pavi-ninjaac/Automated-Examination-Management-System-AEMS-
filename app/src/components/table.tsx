@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -26,21 +28,16 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-const rows = [
-  { id: "dcushcujsdn", name: "Krish" },
-  { id: "dcushcujsdn", name: "XYZ" },
-  { id: "dcushcujsdn", name: "San" },
-  { id: "dcuwsjsdn", name: "Pranav" }
-];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 400
   }
 });
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props: any) {
   const classes = useStyles();
+  const rows: Array<object> = props.rows;
+  console.log(rows);
 
   return (
     <TableContainer component={Paper}>
@@ -52,12 +49,18 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.id}>
+          {(rows).map((row: any) => (
+            <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
-                {row.id}
+                <Link to={`application/${row._id}`} style={{ width: '100%' }}>
+                  {row._id}
+                </Link>
               </StyledTableCell>
-              <StyledTableCell align="right">{row.name}</StyledTableCell>
+              <StyledTableCell align="right">
+                <Link to={`application/${row._id}`} style={{ width: '100%' }}>
+                  {row.name}
+                </Link>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
