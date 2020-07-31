@@ -67,11 +67,23 @@ export default function AdminPage() {
           </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" color="primary">
+            {/* <Button variant="contained" color="primary">
               Button 2
-          </Button>
+          </Button> */}
           </Grid>
         </Grid>
+        <div style={{ marginTop: "2rem" }}>
+          <Typography variant="h5" component="p" style={{ marginBottom: "1rem" }}>
+            Verified forms
+          </Typography>
+          <Table rows={verified} />
+        </div>
+        <div style={{ marginTop: "2rem" }}>
+          <Typography variant="h5" component="p" style={{ marginBottom: "1rem" }}>
+            Unverified forms
+          </Typography>
+          <Table rows={unverified} />
+        </div>
         <div style={{ marginTop: "2rem" }}>
           <Typography variant="h5" component="p" style={{ marginBottom: "1rem" }}>
             Submitted forms
