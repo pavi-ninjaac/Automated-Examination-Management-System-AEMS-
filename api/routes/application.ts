@@ -73,7 +73,8 @@ router.delete('/delete', JSONParser, verifyAuth, async (req: express.Request | a
 
 /* Get all applications */
 
-router.get('/all', async (req: any, res: any) => {
+router.get('/all', verifyAuth, async (req: any, res: any) => {
+  if (req.user.type !== 'admin') { return res.status(401).json({ message: 'not admin' }) }
   try {
     Logger.debug('Getting all applications...');
     const applications = await Application.find({});
