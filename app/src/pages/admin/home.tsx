@@ -4,7 +4,7 @@ import Table from "../../components/table";
 
 import { Button, Grid, Typography } from "@material-ui/core";
 
-export function AdminPage() {
+export default function AdminPage() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>

@@ -8,12 +8,15 @@ import CenterContainer from './containers/CenterContainer';
 
 import ProtectedRoute from './routers/ProtectedRoute';
 import AuthRoute from './routers/AuthRoute';
+import AdminRoute from './routers/AdminRoute';
 
 /* Pages */
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import LogOut from './pages/auth/LogOut';
 import Application from './pages/client/Registration/Registration';
+
+import AdminHome from './pages/admin/home';
 
 import Page404 from './pages/errors/404';
 
@@ -27,6 +30,7 @@ function Loading() {
 
 function AppController() {
   const [auth, setAuth] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
@@ -37,6 +41,11 @@ function AppController() {
         .then((res) => {
           console.log(res.data);
           setAuth(!!res.data.id);
+          if (res.data.type === 'admin') {
+            setAdmin(true);
+          } else {
+            setAdmin(false);
+          }
           setLoad(false);
         })
         .catch((err) => {
@@ -54,9 +63,12 @@ function AppController() {
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
           <AuthRoute path='/auth/logout' exact authenticated={auth} component={LogOut} />
 
-          <Route path='/reg' exact component={Application} />
+          <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
 
           <ProtectedRoute path='/registration' exact authenticated={auth} component={Application} />
+          <ProtectedRoute path='/' exact authenticated={auth} component={Application} />
+
+          <Route path='/reg' exact component={Application} />
 
           <Route path='*' component={Page404} />
         </Switch>
@@ -66,7 +78,9 @@ function AppController() {
 
   return (
     <Fragment>
-      {load ? <Loading /> : <AppRouter />}
+      <CenterContainer>
+        {load ? <Loading /> : <AppRouter />}
+      </CenterContainer>
     </Fragment>
   );
 }
