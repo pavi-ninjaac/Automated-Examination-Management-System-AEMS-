@@ -34,7 +34,9 @@ function AppController() {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    if (!!window.localStorage.getItem('stetUser')) {
+    const session = window.localStorage.getItem('stetUser');
+    if (!session) { setAuth(false); setAdmin(false); setLoad(false); }
+    if (!!session) {
       axios.get('/api/auth/validate-token', {
         headers: { authorization: JSON.parse(window.localStorage.getItem('stetUser') as string).token }
       })

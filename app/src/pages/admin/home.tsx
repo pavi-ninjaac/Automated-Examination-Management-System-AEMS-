@@ -1,10 +1,14 @@
 import React from 'react';
+import { Button, Grid, Typography } from "@material-ui/core";
+
 import Card from "../../components/card";
 import Table from "../../components/table";
 
-import { Button, Grid, Typography } from "@material-ui/core";
+import AdminFunctions from '../../tools/functions/applications';
 
 export default function AdminPage() {
+  AdminFunctions.getAll();
+
   return (
     <React.Fragment>
       <Grid container spacing={3}>
