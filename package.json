@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node server.ts",
     "start-server": "nodemon --ignore app/",
-    "start-app": "npm start --prefix app"
+    "start-app": "npm start --prefix app",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix app && npm run build --prefix app"
   },
   "author": "",
   "license": "MIT",
