@@ -3,11 +3,15 @@ import axios from 'axios';
 async function getAll() {
   if (!window.localStorage.getItem('stetUser')) { return 'no-session' }
   const session = JSON.parse(window.localStorage.getItem('stetUser'));
-  const allApplications = axios.get('/api/applications/all', {
-    headers: { authorization: session.token }
-  });
-
-  console.log(allApplications);
+  try {
+    const allApplications = await axios.get('/api/application/all', {
+      headers: { authorization: session.token }
+    });
+    console.log(allApplications);
+    return allApplications.data;
+  } catch (err) {
+    return err;
+  }
 }
 
 export default { getAll }

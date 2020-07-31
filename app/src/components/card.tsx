@@ -11,14 +11,14 @@ function Card(props: any) {
           justify="space-between"
           alignItems="center"
         >
-          <Grid item>
-            <Typography variant="h4" component="h2">
+          <Grid item xs={6} sm={8}>
+            <Typography variant="h5" component="h3">
               {props.name}
             </Typography>
           </Grid>
 
-          <Grid item>
-            <Typography variant="h3" component="p">
+          <Grid item xs={6} sm={4}>
+            <Typography variant="h3" component="p" align='right'>
               {props.no}
             </Typography>
           </Grid>

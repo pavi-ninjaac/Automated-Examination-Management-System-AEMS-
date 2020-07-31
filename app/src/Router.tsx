@@ -80,9 +80,7 @@ function AppController() {
 
   return (
     <Fragment>
-      <CenterContainer>
-        {load ? <Loading /> : <AppRouter />}
-      </CenterContainer>
+      {load ? <Loading /> : <AppRouter />}
     </Fragment>
   );
 }
