@@ -12,6 +12,7 @@ import AuthRoute from './routers/AuthRoute';
 /* Pages */
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
+import LogOut from './pages/auth/LogOut';
 import Application from './pages/client/Registration/Registration';
 
 import Page404 from './pages/errors/404';
@@ -29,18 +30,20 @@ function AppController() {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    // setAuth(!!window.localStorage.getItem('stetUser'));
-    axios.get('/api/auth/validate-token', {
-      headers: { authorization: window.localStorage.getItem('stetUser') }
-    })
-      .then((res) => {
-        setAuth(true);
-        setLoad(false);
+    if (!!window.localStorage.getItem('stetUser')) {
+      axios.get('/api/auth/validate-token', {
+        headers: { authorization: JSON.parse(window.localStorage.getItem('stetUser') as string).token }
       })
-      .catch((err) => {
-        setAuth(false);
-        setLoad(false);
-      });
+        .then((res) => {
+          console.log(res.data);
+          setAuth(!!res.data.id);
+          setLoad(false);
+        })
+        .catch((err) => {
+          setAuth(false);
+          setLoad(false);
+        });
+    }
   }, []);
 
   function AppRouter() {
@@ -49,10 +52,11 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
+          <AuthRoute path='/auth/logout' exact authenticated={auth} component={LogOut} />
 
           <Route path='/reg' exact component={Application} />
 
-          <ProtectedRoute path='/registration' exact component={Application} />
+          <ProtectedRoute path='/registration' exact authenticated={auth} component={Application} />
 
           <Route path='*' component={Page404} />
         </Switch>

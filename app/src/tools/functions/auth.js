@@ -53,7 +53,7 @@ const validateSession = async () => {
     const validationResult = await axios.get('/api/validate-token', {
       headers: { authorization: session.token }
     });
-    result = 'valid';
+    result = validationResult;
     return result;
   } catch (err) {
     result = 'invalid';
@@ -62,7 +62,8 @@ const validateSession = async () => {
 }
 
 const logout = () => {
+  console.log('Logging out...');
   window.localStorage.removeItem('stetUser');
 }
 
-export default { signUp, login, validateSession };
+export default { signUp, login, validateSession, logout };

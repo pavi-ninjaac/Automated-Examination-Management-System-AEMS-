@@ -1,6 +1,8 @@
-import { Button, Container, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+
+import { Button, Container, CircularProgress, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
+
 import InputField from '../../../components/FormField';
 import FormController from '../../../tools/functions/formController';
 import initialValues from './initialValues';
@@ -106,13 +108,10 @@ export default function Registration() {
           { field: 'documents_signature', label: 'Signature' }
         ].map(generateBunch)}
 
-
-        <Button type="submit" className={classes.submit}
+        <Button type="submit"
           variant="contained" color="primary">
-          {
-            (status === 'processing') ?
-              <CircularProgress color='secondary' size={20} /> : 'Sign up'
-          }
+          {(status === 'processing') ?
+            <CircularProgress color='secondary' size={20} /> : 'Register'}
         </Button>
       </form>
     </Container>
