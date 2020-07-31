@@ -26,7 +26,8 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      password: req.body.password
+      password: req.body.password,
+      type: req.body.type
     });
 
     // Validate the details

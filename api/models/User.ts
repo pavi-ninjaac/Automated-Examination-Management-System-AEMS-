@@ -5,11 +5,13 @@ interface UserInterface extends Document {
   email: string;
   phone: number;
   password: string;
+  type?: string;
 }
 
 interface UserPayload {
   id: string;
   email: string;
+  type: string;
 }
 
 const UserSchema = new Schema({
@@ -17,6 +19,7 @@ const UserSchema = new Schema({
   email: { type: String, trim: true, minlength: 10, maxlength: 255, unique: true, required: true },
   phone: { type: Number, trim: true, minlength: 10, maxlength: 10, min: 5555555555, max: 9999999999 },
   password: { type: String, minlength: 6, maxlength: 1024, required: true },
+  type: { type: String, required: true, default: 'applicant' },
   isVerified: { type: Boolean, default: false, required: true }
 }, {
   timestamps: true
