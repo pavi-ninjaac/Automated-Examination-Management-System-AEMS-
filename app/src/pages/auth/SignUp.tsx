@@ -63,7 +63,8 @@ export default function SignUp() {
   }
 
   useEffect(() => {
-    if (newUserResult === 'account created successfully') {
+    if (newUserResult === 'created') {
+      console.log(newUserResult);
       window.open('/auth/signin', '_self');
     }
   }, [newUserResult]);

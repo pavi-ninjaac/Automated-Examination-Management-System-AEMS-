@@ -18,7 +18,7 @@ export default function Registration() {
   }
 
   useEffect(() => {
-    if (status === 'application submitted successfully') {
+    if (status === 'submitted') {
       window.open('/', '_self');
     }
   }, [status]);
