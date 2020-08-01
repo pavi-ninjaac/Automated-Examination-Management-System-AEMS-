@@ -49,7 +49,13 @@ export default function SignIn() {
 
   useEffect(() => {
     if (typeof authResult === 'object') {
-      window.open('/registration', '_self');
+      console.log(authResult);
+      if (authResult.name === 'Admin') {
+        window.open('/admin', '_self');
+      } else {
+        console.log(authResult.name)
+        window.open('/registration', '_self');
+      }
     }
   }, [authResult]);
 
