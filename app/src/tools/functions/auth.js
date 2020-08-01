@@ -31,11 +31,7 @@ const signUp = async (userDetails) => {
   try {
     const response = await axios.post('/api/auth/register', userDetails);
     console.log(response.data);
-    if (response.data.status === 201) {
-      result = 'created';
-      return result;
-    }
-    result = response.data.message;
+    result = response.data;
     return result;
   }
   catch (err) {
