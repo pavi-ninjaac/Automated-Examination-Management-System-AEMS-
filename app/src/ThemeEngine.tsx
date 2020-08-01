@@ -13,7 +13,9 @@ const colorScheme = 'light';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: blue[500],
+      dark: '#601e9e',
+      main: '#8a2be2',
+      light: '#a155e7',
     },
     secondary: pink,
     type: colorScheme,

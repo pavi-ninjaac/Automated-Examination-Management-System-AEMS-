@@ -41,3 +41,12 @@ export default function homepage() {
     </React.Fragment>
   );
 }
+
+////////////////////////////////////////////
+
+// Home back image URL
+
+// https://www.pexels.com/photo/photography-of-brown-3-storey-concrete-building-698207/
+
+
+/////////////////////////////////////////////
