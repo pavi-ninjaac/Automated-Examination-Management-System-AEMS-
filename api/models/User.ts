@@ -6,12 +6,14 @@ interface UserInterface extends Document {
   phone: number;
   password: string;
   type?: string;
+  isVerified?: boolean;
 }
 
 interface UserPayload {
   id: string;
   email: string;
   type: string;
+  isVerified: boolean;
 }
 
 const UserSchema = new Schema({

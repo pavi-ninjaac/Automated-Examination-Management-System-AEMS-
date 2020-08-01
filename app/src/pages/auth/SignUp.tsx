@@ -16,6 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +40,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [alertMessage, setAlertMessage] = useState('');
   const [newUserResult, setNewUserResult] = useState('waiting');
+  const [error, setError] = useState('');
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -55,6 +58,12 @@ export default function SignUp() {
     });
   }
 
+  useEffect(() => {
+    if (details.password !== details.cPassword) {
+      setError('Mismatch');
+    }
+  }, [details.password, details.cPassword])
+
   const submitForm = async (submitEvent: any) => {
     submitEvent.preventDefault();
     setNewUserResult('processing');
@@ -64,6 +73,10 @@ export default function SignUp() {
   useEffect(() => {
     if (newUserResult === 'account created successfully') {
       window.open('/auth/signin', '_self');
+    } else {
+      if (newUserResult !== 'processing') {
+        setAlertMessage(newUserResult);
+      }
     }
   }, [newUserResult]);
 
@@ -110,6 +123,8 @@ export default function SignUp() {
                 name="password"
                 label="Password"
                 onChange={handleChange}
+                error={error !== ''}
+                helperText={error}
                 required fullWidth
               />
             </Grid>
@@ -119,8 +134,14 @@ export default function SignUp() {
                 name="cPassword"
                 label="Confirm Password"
                 onChange={handleChange}
+                error={error !== ''}
+                helperText={error}
                 required fullWidth
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant='h5'>Note:</Typography>
+              <Typography variant='body2'>Password should have atleast 1 Capital letter, 1 small letter, 1 numeric character and 1 special character.</Typography>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -131,16 +152,14 @@ export default function SignUp() {
           </Grid>
           <Button type="submit" className={classes.submit}
             variant="contained" color="primary" fullWidth>
-            {
-              (newUserResult === 'processing') ?
-                <CircularProgress color='secondary' size={20} /> : 'Sign up'
-            }
+            {(newUserResult === 'processing') ?
+              <CircularProgress color='secondary' size={20} /> : 'Sign up'}
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/auth/signin">
                 Already have an account? Sign in
-                </Link>
+              </Link>
             </Grid>
           </Grid>
         </form>
@@ -148,6 +167,9 @@ export default function SignUp() {
       <Box mt={5}>
         <Copyright />
       </Box>
+      {
+        (alertMessage !== '') && <Alert msg={alertMessage} type={"error"} open={true} />
+      }
     </Container>
   );
 }

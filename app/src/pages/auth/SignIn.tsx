@@ -15,6 +15,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
 
+import Alert from "../../components/Alert";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [alertMessage, setAlertMessage] = useState('');
   const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
   const [credentials, setCredentials] = useState({
     email: "",
@@ -54,6 +57,10 @@ export default function SignIn() {
       } else {
         console.log(authResult.name)
         window.open('/registration', '_self');
+      }
+    } else {
+      if (authResult !== 'processing') {
+        setAlertMessage(authResult);
       }
     }
   }, [authResult]);
@@ -123,6 +130,9 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      {
+        (alertMessage !== '') && <Alert msg={alertMessage} type={"error"} open={true} />
+      }
     </Container>
   );
 }

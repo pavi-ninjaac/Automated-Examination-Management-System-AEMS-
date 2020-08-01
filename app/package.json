@@ -12,13 +12,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "axios": "^0.19.2",
-    "formik": "^2.1.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "yup": "^0.29.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -29,8 +23,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/yup": "^0.29.3",
+    "axios": "^0.19.2",
+    "formik": "^2.1.5",
     "http-proxy-middleware": "^1.0.4",
-    "typescript": "^3.9.6"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "typescript": "^3.9.6",
+    "yup": "^0.29.1"
   },
   "devDependencies": {},
   "eslintConfig": {

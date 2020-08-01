@@ -40,6 +40,7 @@ function AppController() {
   const [auth, setAuth] = useState(false);
   const [isAdmin, setAdmin] = useState(false);
   const [load, setLoad] = useState(true);
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     const session = window.localStorage.getItem('stetUser');
@@ -53,13 +54,16 @@ function AppController() {
           setAuth(!!res.data.id);
           if (res.data.type === 'admin') {
             setAdmin(true);
+            setVerified(true);
           } else {
             setAdmin(false);
+            setVerified(false);
           }
           setLoad(false);
         })
         .catch((err) => {
           setAuth(false);
+          setVerified(false);
           setLoad(false);
         });
     }
@@ -72,11 +76,11 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
-          <ProtectedRoute path='/auth/logout' exact authenticated={auth} component={LogOut} />
+          <ProtectedRoute path='/auth/logout' exact verified={verified} authenticated={auth} component={LogOut} />
 
           <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
 
-          <ProtectedRoute path='/registration' exact authenticated={auth} component={Registration} />
+          <ProtectedRoute path='/registration' exact verified={verified} authenticated={auth} component={Registration} />
 
           <Route path='/' exact component={Home} />
           <Route path='/materials' exact component={Materials} />
