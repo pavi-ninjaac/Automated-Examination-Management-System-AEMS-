@@ -8,7 +8,7 @@ const AuthRoute = (RouteProps: any) => {
     <Route
       {...rest}
       render={(props) =>
-        !isAuth ? <Component {...props} /> : <Redirect to="/" />
+        !isAuth ? <Component {...props} /> : <Redirect to="/registration" />
       }
     />
   );

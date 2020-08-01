@@ -14,7 +14,15 @@ import AdminRoute from './routers/AdminRoute';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import LogOut from './pages/auth/LogOut';
-import Application from './pages/client/Registration/Registration';
+
+import SignedInNavBar from "./components/SignedInNavBar";
+import NavBar from "./components/NavBar";
+
+import Materials from "./pages/Materials";
+
+import Registration from './pages/client/Registration/Registration';
+
+import Home from './pages/homepage';
 
 import AdminHome from './pages/admin/home';
 
@@ -60,6 +68,7 @@ function AppController() {
   function AppRouter() {
     return (
       <Router>
+        {!load && (auth ? <SignedInNavBar /> : <NavBar />)}
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
@@ -67,11 +76,10 @@ function AppController() {
 
           <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
 
-          <ProtectedRoute path='/registration' exact authenticated={auth} component={Application} />
-          <ProtectedRoute path='/' exact authenticated={auth} component={Application} />
+          <ProtectedRoute path='/registration' exact authenticated={auth} component={Registration} />
 
-          <Route path='/reg' exact component={Application} />
-
+          <Route path='/' exact component={Home} />
+          <Route path='/materials' exact component={Materials} />
           <Route path='*' component={Page404} />
         </Switch>
       </Router>
@@ -80,7 +88,12 @@ function AppController() {
 
   return (
     <Fragment>
-      {load ? <Loading /> : <AppRouter />}
+      {load ?
+        <CenterContainer>
+          <Loading />
+        </CenterContainer>
+        : <AppRouter />
+      }
     </Fragment>
   );
 }
