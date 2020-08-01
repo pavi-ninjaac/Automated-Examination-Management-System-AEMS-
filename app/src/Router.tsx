@@ -63,7 +63,7 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
-          <AuthRoute path='/auth/logout' exact authenticated={auth} component={LogOut} />
+          <ProtectedRoute path='/auth/logout' exact authenticated={auth} component={LogOut} />
 
           <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
 
