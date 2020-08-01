@@ -30,12 +30,12 @@ export default Yup.object({
   SSLC_institute: Yup.string().min(4).max(50).required(),
   SSLC_address: Yup.string().min(4).max(255),
   SSLC_percentage: Yup.number().min(50).max(100).required(),
-  SSLC_dateOfPassing: Yup.string().required(),
+  SSLC_dateOfPassing: Yup.date().required(),
 
   HSC_institute: Yup.string().min(4).max(50).required(),
   HSC_address: Yup.string().min(4).max(255),
   HSC_percentage: Yup.number().min(50).max(100).required(),
-  HSC_dateOfPassing: Yup.string().required(),
+  HSC_dateOfPassing: Yup.date().required(),
 
   college_degree: Yup.string().min(4).max(25).required(),
   college_department: Yup.string().min(4).max(35).required(),

@@ -45,7 +45,6 @@ export default function Module1({ controller: formik, generateBunch }: any) {
         label="Birthday"
         type="date"
         variant="outlined"
-        defaultValue="2000-05-24"
         {...formik.getFieldProps('dateOfBirth')}
       />
     </>

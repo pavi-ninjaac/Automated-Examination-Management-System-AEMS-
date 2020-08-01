@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 
-import { Button, Container, CircularProgress, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
+import { Button, Container, CircularProgress, FormControlLabel, TextField, FormLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
 
 import InputField from '../../../components/FormField';
 import FormController from '../../../tools/functions/formController';
@@ -75,16 +75,26 @@ export default function Registration() {
           { field: 'SSLC_institute', label: 'Institute' },
           { field: 'SSLC_address', label: 'Address' },
           { field: 'SSLC_percentage', label: 'Percentage' },
-          { field: 'SSLC_dateOfPassing', label: 'Date of passing' },
         ].map(generateBunch)}
+        <TextField
+          label="Date of Passing"
+          type="date"
+          variant="outlined"
+          {...formik.getFieldProps('SSLC_dateOfPassing')}
+        />
         <hr />
         <FormLabel component="legend">HSC</FormLabel>
         {[
           { field: 'HSC_institute', label: 'Institute' },
           { field: 'HSC_address', label: 'Address' },
           { field: 'HSC_percentage', label: 'Percentage' },
-          { field: 'HSC_dateOfPassing', label: 'Date of passing' },
         ].map(generateBunch)}
+        <TextField
+          label="Date of Passing"
+          type="date"
+          variant="outlined"
+          {...formik.getFieldProps('HSC_dateOfPassing')}
+        />
         <hr />
         <FormLabel component="legend">College</FormLabel>
         {[
@@ -94,8 +104,13 @@ export default function Registration() {
           { field: 'college_university', label: 'University' },
           { field: 'college_address', label: 'Address' },
           { field: 'college_percentage', label: 'Percentage' },
-          { field: 'college_dateOfPassing', label: 'Date of passing' },
         ].map(generateBunch)}
+        <TextField
+          label="Date of Passing"
+          type="date"
+          variant="outlined"
+          {...formik.getFieldProps('college_dateOfPassing')}
+        />
         <hr />
         <FormLabel component="legend">Documents</FormLabel>
         {[
