@@ -68,7 +68,7 @@ function AppController() {
   function AppRouter() {
     return (
       <Router>
-        {!load && (auth ? <SignedInNavBar /> : <NavBar />)}
+        {!load && (!auth ? <SignedInNavBar /> : <NavBar />)}
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
