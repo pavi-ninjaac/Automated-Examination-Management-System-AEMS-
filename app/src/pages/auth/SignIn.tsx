@@ -14,7 +14,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
-import CenterContainer from '../../containers/CenterContainer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,59 +72,57 @@ export default function SignIn() {
   }
 
   return (
-    <CenterContainer>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOpenOutlinedIcon className={classes.avatarIcon} fontSize='large' />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOpenOutlinedIcon className={classes.avatarIcon} fontSize='large' />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
         </Typography>
-          <form className={classes.form} noValidate onSubmit={submitForm}>
-            <TextField
-              variant="outlined" id="email" autoComplete="email"
-              name="email" label="Email Address"
-              value={credentials.email}
-              onChange={handleChange}
-              autoFocus required fullWidth
-            />
-            <TextField
-              variant="outlined" type="password" id="password" autoComplete="password"
-              name="password" label="Password"
-              value={credentials.password}
-              onChange={handleChange}
-              fullWidth required
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              {
-                (authResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign in'
-              }
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/auth/forgot-password">
-                  Forgot password?
+        <form className={classes.form} noValidate onSubmit={submitForm}>
+          <TextField
+            variant="outlined" id="email" autoComplete="email"
+            name="email" label="Email Address"
+            value={credentials.email}
+            onChange={handleChange}
+            autoFocus required fullWidth
+          />
+          <TextField
+            variant="outlined" type="password" id="password" autoComplete="password"
+            name="password" label="Password"
+            value={credentials.password}
+            onChange={handleChange}
+            fullWidth required
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {
+              (authResult === 'processing') ? <CircularProgress color='secondary' size={20} /> : 'Sign in'
+            }
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link to="/auth/forgot-password">
+                Forgot password?
               </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/auth/signup">
-                  Don't have an account? Sign Up
-              </Link>
-              </Grid>
             </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-      </Container>
-    </CenterContainer>
+            <Grid item>
+              <Link to="/auth/signup">
+                Don't have an account? Sign Up
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
   );
 }

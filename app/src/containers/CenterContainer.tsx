@@ -10,6 +10,7 @@ function CenterContainer({ outerStyle, innerStyle, children }: any) {
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
       margin: 'auto 0',
     }
   }));

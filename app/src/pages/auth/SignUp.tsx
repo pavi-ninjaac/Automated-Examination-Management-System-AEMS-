@@ -16,7 +16,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
-import CenterContainer from '../../containers/CenterContainer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -69,88 +68,86 @@ export default function SignUp() {
   }, [newUserResult]);
 
   return (
-    <CenterContainer>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
           </Typography>
-          <form className={classes.form} onSubmit={submitForm}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined" id="Name" autoComplete="name"
-                  name="name" label="Name"
-                  onChange={handleChange}
-                  required fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined" id="email" autoComplete="email"
-                  label="Email Address"
-                  name="email"
-                  onChange={handleChange}
-                  fullWidth required
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined" size="small" id="mobile" type="tel" autoComplete="phone"
-                  label="Mobile Number"
-                  name="phone"
-                  onChange={handleChange}
-                  fullWidth required
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined" id="password" type="password" size="small" autoComplete="current-password"
-                  name="password"
-                  label="Password"
-                  onChange={handleChange}
-                  required fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined" type="password" size="small" id="cPassword"
-                  name="cPassword"
-                  label="Confirm Password"
-                  onChange={handleChange}
-                  required fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="verify" color="primary" />}
-                  label="Verify email right now"
-                />
-              </Grid>
+        <form className={classes.form} onSubmit={submitForm}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined" id="Name" autoComplete="name"
+                name="name" label="Name"
+                onChange={handleChange}
+                required fullWidth
+              />
             </Grid>
-            <Button type="submit" className={classes.submit}
-              variant="contained" color="primary" fullWidth>
-              {
-                (newUserResult === 'processing') ?
-                  <CircularProgress color='secondary' size={20} /> : 'Sign up'
-              }
-            </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link to="/auth/signin">
-                  Already have an account? Sign in
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined" id="email" autoComplete="email"
+                label="Email Address"
+                name="email"
+                onChange={handleChange}
+                fullWidth required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined" size="small" id="mobile" type="tel" autoComplete="phone"
+                label="Mobile Number"
+                name="phone"
+                onChange={handleChange}
+                fullWidth required
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined" id="password" type="password" size="small" autoComplete="current-password"
+                name="password"
+                label="Password"
+                onChange={handleChange}
+                required fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined" type="password" size="small" id="cPassword"
+                name="cPassword"
+                label="Confirm Password"
+                onChange={handleChange}
+                required fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="verify" color="primary" />}
+                label="Verify email right now"
+              />
+            </Grid>
+          </Grid>
+          <Button type="submit" className={classes.submit}
+            variant="contained" color="primary" fullWidth>
+            {
+              (newUserResult === 'processing') ?
+                <CircularProgress color='secondary' size={20} /> : 'Sign up'
+            }
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link to="/auth/signin">
+                Already have an account? Sign in
                 </Link>
-              </Grid>
             </Grid>
-          </form>
-        </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
-    </CenterContainer>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
   );
 }
