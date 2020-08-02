@@ -132,17 +132,28 @@ router.get('/details', verifyAuth, async (req: express.Request | any, res: expre
   } catch (error) { return res.status(500).json({ message: 'error finding user' }) }
 });
 
-router.get('/verify/:userId', verifyAuth, async (req: any, res: any) => {
+router.get('/verify/send', verifyAuth, async (req: any, res: any) => {
+  Logger.debug('> Sending verification email');
+
+  mail(undefined, req.user.email, 'STET Email Verification', `
+    <h1>Click the link below to verify your email ID.</h1>
+    <a style='display: inline-block, padding: 1rem 2rem, background-color: dodgerblue' href='http://localhost:5000/api/auth/verify/${req.user.id}'>VERIFY NOW</a>
+  `);
+
+  return res.status(200).send('mail sent');
+});
+
+router.get('/verify/:userId', async (req: any, res: any) => {
   Logger.debug('> Verification request...');
   try {
-    const user = await User.findByIdAndUpdate(req.user.id, {
+    const user = await User.findByIdAndUpdate(req.params.userId, {
       isVerified: true
     });
     mail(undefined, (user as UserInterface).email, 'Account Verified', `
       <h1>STET account verified successfully.</h1>
       <p>Thank you for verifying your account with STET.
     `);
-    return res.status(200).json({ message: 'email verified successfully' });
+    return res.status(200).send('email verified successfully');
   } catch (error) {
     Logger.error(error);
     return res.status(500).json({ message: 'could not process update request' });

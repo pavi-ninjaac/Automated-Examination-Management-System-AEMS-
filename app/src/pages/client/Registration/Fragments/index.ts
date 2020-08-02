@@ -4,7 +4,7 @@ import ContactDetails from './ContactDetails';
 import DocumentsSection from './DocumentsSection';
 import QualificationDetails from './QualificationDetails';
 
-export default {
+export {
   AdditionalDetails,
   BasicDetails,
   ContactDetails,

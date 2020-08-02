@@ -10,12 +10,10 @@ const transporter = nodemailer.createTransport({
 });
 
 async function mail(from: string = '"STET Web Portal" <no-reply@stet.gov.in>', to: string, subject: string, message: string) {
+  Logger.debug(from, to, subject);
   try {
     let info = await transporter.sendMail({
-      from: from,
-      to: to,
-      subject: subject,
-      html: message
+      from, to, subject, html: message
     });
     Logger.debug("Message sent: %s", info.messageId);
     return info.messageId;

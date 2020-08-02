@@ -46,10 +46,26 @@ const validateSession = async () => {
   const session = JSON.parse(window.localStorage.getItem('stetUser'));
   let result = 'waiting';
   try {
-    const validationResult = await axios.get('/api/validate-token', {
+    const validationResult = await axios.get('/api/auth/validate-token', {
       headers: { authorization: session.token }
     });
     result = validationResult;
+    return result;
+  } catch (err) {
+    result = 'invalid';
+    return result;
+  }
+}
+
+const sendVerificationEmail = async () => {
+  if (!window.localStorage.getItem('stetUser')) { return 'no-session' }
+  const session = JSON.parse(window.localStorage.getItem('stetUser'));
+  let result = 'processing';
+  try {
+    const verification = await axios.get('/api/auth/verify/send/', {
+      headers: { authorization: session.token }
+    });
+    result = verification;
     return result;
   } catch (err) {
     result = 'invalid';
@@ -62,4 +78,4 @@ const logout = () => {
   window.localStorage.removeItem('stetUser');
 }
 
-export default { signUp, login, validateSession, logout };
+export default { signUp, login, validateSession, sendVerificationEmail, logout };

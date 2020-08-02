@@ -1,15 +1,12 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
 
 function Alert(props: any) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-
-export default function Snackbars(props: any) {
+export default function SnackBar(props: any) {
   const [open, setOpen] = React.useState(props.open);
 
   const handleClose = (event: any, reason: any) => {

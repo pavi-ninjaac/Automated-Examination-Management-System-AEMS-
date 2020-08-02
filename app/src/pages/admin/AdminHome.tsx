@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 
-import Card from "../../components/card";
-import Table from "../../components/table";
+import Card from "../../components/Card";
+import Table from "../../components/Table";
 
 import AdminFunctions from '../../tools/functions/applications';
 

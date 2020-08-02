@@ -16,7 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Copyright from '../../components/Copyright';
 import AuthFunctions from '../../tools/functions/auth';
-import Alert from '@material-ui/lab/Alert';
+import Alert from "../../components/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,6 +61,8 @@ export default function SignUp() {
   useEffect(() => {
     if (details.password !== details.cPassword) {
       setError('Mismatch');
+    } else {
+      setError('');
     }
   }, [details.password, details.cPassword])
 
@@ -168,7 +170,7 @@ export default function SignUp() {
         <Copyright />
       </Box>
       {
-        (alertMessage !== '') && <Alert msg={alertMessage} type={"error"} open={true} />
+        (alertMessage !== '') && <Alert msg={alertMessage} type="error" open={true} />
       }
     </Container>
   );

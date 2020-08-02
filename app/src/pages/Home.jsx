@@ -19,14 +19,14 @@ export default function homepage() {
             <Link to='/auth/signin'>
               <Button variant="outlined" color="primary">
                 Sign In
-            </Button>
+              </Button>
             </Link>
           </Grid>
           <Grid item style={{ textAlign: 'center' }} xs={6}>
             <Link to='/auth/signup'>
               <Button variant="contained" color="primary">
                 Sign Up
-            </Button>
+              </Button>
             </Link>
           </Grid>
           <Grid item style={{ textAlign: 'center' }} xs={4}>

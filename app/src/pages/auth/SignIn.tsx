@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const [alertMessage, setAlertMessage] = useState('');
-  const [authResult, setAuthResult] = useState('no-auth' as AuthResult);
+  const [authResult, setAuthResult] = useState('' as AuthResult);
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
@@ -60,7 +60,13 @@ export default function SignIn() {
       }
     } else {
       if (authResult !== 'processing') {
-        setAlertMessage(authResult);
+        if (authResult === 'no-user') {
+          setAlertMessage('User does not exist');
+        } else if (authResult === 'wrong-password') {
+          setAlertMessage('Password is incorrect');
+        } else {
+          setAlertMessage(authResult);
+        }
       }
     }
   }, [authResult]);
@@ -93,6 +99,7 @@ export default function SignIn() {
             name="email" label="Email Address"
             value={credentials.email}
             onChange={handleChange}
+            style={{ marginBottom: '1rem' }}
             autoFocus required fullWidth
           />
           <TextField
@@ -131,7 +138,7 @@ export default function SignIn() {
         <Copyright />
       </Box>
       {
-        (alertMessage !== '') && <Alert msg={alertMessage} type={"error"} open={true} />
+        (alertMessage !== '') && <Alert msg={alertMessage} type="error" open={true} />
       }
     </Container>
   );

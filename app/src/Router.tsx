@@ -14,6 +14,7 @@ import AdminRoute from './routers/AdminRoute';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import LogOut from './pages/auth/LogOut';
+import Verify from './pages/auth/Verify';
 
 import SignedInNavBar from "./components/SignedInNavBar";
 import NavBar from "./components/NavBar";
@@ -22,9 +23,9 @@ import Materials from "./pages/Materials";
 
 import Registration from './pages/client/Registration/Registration';
 
-import Home from './pages/homepage';
+import Home from './pages/Home';
 
-import AdminHome from './pages/admin/home';
+import AdminHome from './pages/admin/AdminHome';
 
 import Page404 from './pages/errors/404';
 
@@ -47,23 +48,21 @@ function AppController() {
     if (!session) { setAuth(false); setAdmin(false); setLoad(false); }
     if (!!session) {
       axios.get('/api/auth/validate-token', {
-        headers: { authorization: JSON.parse(window.localStorage.getItem('stetUser') as string).token }
+        headers: { authorization: JSON.parse(session).token }
       })
         .then((res) => {
           console.log(res.data);
+          setVerified(res.data.isVerified);
           setAuth(!!res.data.id);
           if (res.data.type === 'admin') {
             setAdmin(true);
-            setVerified(true);
           } else {
             setAdmin(false);
-            setVerified(false);
           }
           setLoad(false);
         })
         .catch((err) => {
           setAuth(false);
-          setVerified(false);
           setLoad(false);
         });
     }
@@ -76,11 +75,12 @@ function AppController() {
         <Switch>
           <AuthRoute path='/auth/signin' exact authenticated={auth} component={SignIn} />
           <AuthRoute path='/auth/signup' exact authenticated={auth} component={SignUp} />
-          <ProtectedRoute path='/auth/logout' exact verified={verified} authenticated={auth} component={LogOut} />
+          <Route path='/auth/logout' exact verified={verified} authenticated={auth} component={LogOut} />
 
           <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
 
           <ProtectedRoute path='/registration' exact verified={verified} authenticated={auth} component={Registration} />
+          <ProtectedRoute path='/auth/verify' exact verified={verified} authenticated={auth} component={Verify} />
 
           <Route path='/' exact component={Home} />
           <Route path='/materials' exact component={Materials} />
