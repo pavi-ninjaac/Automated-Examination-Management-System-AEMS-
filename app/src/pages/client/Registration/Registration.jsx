@@ -46,7 +46,7 @@ export default function Registration() {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h2" component='h1'>
+      <Typography variant="h2" component='h1' style={{ marginBottom: '1rem' }}>
         Register
       </Typography>
       <form onSubmit={formik.handleSubmit}>
