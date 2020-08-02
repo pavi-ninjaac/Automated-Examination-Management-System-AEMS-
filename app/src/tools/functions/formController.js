@@ -44,12 +44,11 @@ async function register(formData) {
   }
   reqBody.documents = {
     aadhaar: formData.documents_aadhaar,
-    voter: formData.documents_voter,
-    SSLC: formData.documents_SSLC,
+    community: formData.documents_community,
+    income: formData.documents_income,
     HSC: formData.documents_HSC,
-    deg: formData.documents_deg,
-    photo: formData.documents_photo,
-    signature: formData.documents_signature
+    nativity: formData.documents_nativity,
+    birth: formData.documents_birth,
   }
   reqBody.college = {
     degree: formData.college_degree,

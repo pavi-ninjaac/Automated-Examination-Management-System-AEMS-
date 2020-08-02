@@ -14,7 +14,7 @@ export default function BasicDetails({ controller: formik, generateBunch }: any)
 
   return (
     <>
-      <RadioGroup row aria-label="Role" name="role" defaultValue="Primary" {...formik.getFieldProps("role")}>
+      <RadioGroup row aria-label="Role" name="role" {...formik.getFieldProps("role")}>
         <FormControlLabel value={"Primary"} control={<Radio color="primary" />} label="Primary" />
         <FormControlLabel value={"High"} control={<Radio color="primary" />} label="High" />
       </RadioGroup>

@@ -10,10 +10,16 @@ import validationSchema from './formik/validationSchema';
 
 import { AdditionalDetails, BasicDetails, ContactDetails, DocumentsSection, QualificationDetails } from './Fragments';
 
+import Alert from "../../../components/Alert";
+
 export default function Registration() {
   const [status, setStatus] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const submitForm = async (values) => {
     setStatus('processing');
+    if (formik.errors) {
+      setAlertMessage(formik.errors);
+    }
     setStatus(await FormController.register(values));
   }
 
@@ -56,6 +62,9 @@ export default function Registration() {
             <CircularProgress color='secondary' size={20} /> : 'Register'}
         </Button>
       </form>
+      {
+        (alertMessage !== '') && <Alert msg={alertMessage} type="error" open={true} />
+      }
     </Container>
   );
 }

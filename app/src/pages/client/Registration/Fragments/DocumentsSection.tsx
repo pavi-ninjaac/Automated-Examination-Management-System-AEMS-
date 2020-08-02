@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormLabel } from '@material-ui/core';
 
-export default function DocumentsSection({ controller: formik, generateBunch }: any) {
+export default function DocumentsSection({ generateBunch }: any) {
   return (
     <>
       <FormLabel component="legend">Documents</FormLabel>
