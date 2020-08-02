@@ -39,7 +39,7 @@ export default function Registration() {
   }
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <Typography variant="h2" component='h1'>
         Register
       </Typography>

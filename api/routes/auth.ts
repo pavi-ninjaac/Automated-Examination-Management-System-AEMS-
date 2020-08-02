@@ -137,7 +137,7 @@ router.get('/verify/send', verifyAuth, async (req: any, res: any) => {
 
   mail(undefined, req.user.email, 'STET Email Verification', `
     <h1>Click the link below to verify your email ID.</h1>
-    <a style='display: inline-block, padding: 1rem 2rem, background-color: dodgerblue' href='http://localhost:5000/api/auth/verify/${req.user.id}'>VERIFY NOW</a>
+    <a style='display: inline-block, padding: 1rem 2rem, background-color: dodgerblue' href='https://stet-infonotes.herokuapp.com/api/auth/verify/${req.user.id}'>VERIFY NOW</a>
   `);
 
   return res.status(200).send('mail sent');
