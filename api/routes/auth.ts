@@ -65,7 +65,11 @@ router.post('/update', URLParser, verifyAuth, async (req: express.Request | any,
       Logger.debug('Hashing password...');
       req.body.password = await bcrypt.hash(req.body.password, saltRounds);
     }
-    await User.findByIdAndUpdate(req.user.id, req.body);
+    const user = await User.findByIdAndUpdate(req.user.id, req.body);
+    mail(undefined, (user as UserInterface).email, 'Updation successful', `
+      <h1>Updation successful</h1>
+      <p>Your account details was updated on ${new Date()}</p>
+    `);
     return res.status(200).json({ message: 'updated successfully' });
   } catch (error) {
     Logger.error(error);
@@ -79,6 +83,10 @@ router.post('/delete', verifyAuth, (req: express.Request | any, res: express.Res
   User.findByIdAndDelete(userId, (err, user: UserInterface | null) => {
     if (err) { return res.status(500).json({ message: 'error deleting user', details: err }); }
     if (!user) { return res.status(200).json({ code: 406, message: 'error deleting user', details: 'user not found' }); }
+    mail(undefined, (user as UserInterface).email, 'Your account was deleted', `
+      <h1>Your STET account was deleted.</h1>
+      <p>Time: ${new Date()}</p>
+    `);
     return res.status(200).json({ message: 'user deleted successfully' });
   });
 });
@@ -101,7 +109,11 @@ router.post('/signin', URLParser, (req: express.Request, res: express.Response) 
       Logger.debug('Generating tokens...');
       const accessToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
-      res.status(200).json({ authenticated: true, accessToken: accessToken, refreshToken: refreshToken, name: user.name });
+      mail(undefined, (user as UserInterface).email, 'Login alert', `
+        <h1>Your account was logged in.</h1>
+        <p>Time: ${new Date()}</p>
+      `);
+      return res.status(200).json({ authenticated: true, accessToken: accessToken, refreshToken: refreshToken, name: user.name });
     } catch (err) {
       Logger.error(err);
       return res.status(500).json({ message: 'could not process login request' });
@@ -118,6 +130,23 @@ router.get('/details', verifyAuth, async (req: express.Request | any, res: expre
     }
     return res.status(200).send(loggedInUser);
   } catch (error) { return res.status(500).json({ message: 'error finding user' }) }
+});
+
+router.get('/verify/:userId', verifyAuth, async (req: any, res: any) => {
+  Logger.debug('> Verification request...');
+  try {
+    const user = await User.findByIdAndUpdate(req.user.id, {
+      isVerified: true
+    });
+    mail(undefined, (user as UserInterface).email, 'Account Verified', `
+      <h1>STET account verified successfully.</h1>
+      <p>Thank you for verifying your account with STET.
+    `);
+    return res.status(200).json({ message: 'email verified successfully' });
+  } catch (error) {
+    Logger.error(error);
+    return res.status(500).json({ message: 'could not process update request' });
+  }
 });
 
 router.get('/validate-token', verifyAuth, (req: express.Request | any, res: express.Response) => res.status(200).send(req.user));

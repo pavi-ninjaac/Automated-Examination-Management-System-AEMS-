@@ -3,6 +3,7 @@ import Logger from 'js-logger';
 
 import Application, { applicationSchema } from '../models/Application';
 import verifyAuth from '../middlewares/verifyAuth';
+import mail from '../middlewares/mailer';
 
 const router = express.Router();
 const JSONParser = express.json();
@@ -32,6 +33,10 @@ router.post('/new', JSONParser, verifyAuth, async (req: express.Request | any, r
     const application = new Application({ _user: req.user.id, ...req.body });
     const regRes = application.save();
     if (!regRes) { throw new Error('error posting application'); }
+    mail(undefined, req.body.email, 'Application Registered', `
+      <h1>Application was registered successfully</h1>
+      <p>Your application for Sikkim Teacher Eligibility Test was submitted successfully. You will updated about the verification process via email. Thank you.</p>
+    `);
     return res.status(200).json({ message: 'application submitted successfully' });
   } catch (err) {
     Logger.error(err);
@@ -45,6 +50,10 @@ router.post('/update', JSONParser, verifyAuth, async (req: express.Request | any
     Logger.debug('> Requesting application updation...');
     const updateResult = await Application.findOneAndUpdate({ _user: req.user.id }, req.body);
     if (!updateResult) { throw new Error('error updating application'); }
+    mail(undefined, req.body.email, 'Application Updated', `
+      <h1>Application was updated successfully</h1>
+      <p>Your application for Sikkim Teacher Eligibility Test was updated successfully. You will updated about the verification process via email. Thank you.</p>
+    `);
     return res.status(200).json({ message: 'application updated successfully.' });
   } catch (err) {
     Logger.error(err);
@@ -64,6 +73,10 @@ router.delete('/delete', JSONParser, verifyAuth, async (req: express.Request | a
     }
     const deleteResult = await Application.findOneAndDelete({ _user: req.user.id });
     if (!deleteResult) { throw new Error('error deleting application'); }
+    mail(undefined, req.body.email, 'Application Deleted', `
+      <h1>Application was deleted</h1>
+      <p>Your application for Sikkim Teacher Eligibility Test was deleted. You will updated about the verification process via email. Thank you.</p>
+    `);
     return res.status(200).json({ message: 'application deleted successfully.' });
   } catch (err) {
     Logger.error(err);
