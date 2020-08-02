@@ -50,12 +50,11 @@ const applicationValidationSchema = Joi.object({
   },
   documents: {
     aadhaar: Joi.string().required(),
-    voter: Joi.string().required(),
-    SSLC: Joi.boolean().required(),
+    income: Joi.string().required(),
+    nativity: Joi.boolean().required(),
     HSC: Joi.boolean().required(),
-    deg: Joi.string().required(),
-    photo: Joi.string().required(),
-    signature: Joi.string().required(),
+    community: Joi.string().required(),
+    birth: Joi.string().required(),
   },
   additional: { isWorking: Joi.boolean().required(), }
 });

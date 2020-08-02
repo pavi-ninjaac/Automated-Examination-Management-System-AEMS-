@@ -7,13 +7,19 @@ export default function DocumentsSection({ controller: formik, generateBunch }: 
       <FormLabel component="legend">Documents</FormLabel>
       {[
         { field: 'documents_aadhaar', label: 'Aadhar' },
-        { field: 'documents_voter', label: 'Voter' },
-        { field: 'documents_SSLC', label: 'SSLC' },
-        { field: 'documents_HSC', label: 'HSC' },
-        { field: 'documents_deg', label: 'Degree' },
-        { field: 'documents_photo', label: 'Photo' },
-        { field: 'documents_signature', label: 'Signature' }
+        { field: 'documents_community', label: 'Community certificate' },
+        { field: 'documents_income', label: 'Income certificate' },
+        { field: 'documents_HSC', label: 'HSC Mark sheet' },
+        { field: 'documents_nativity', label: 'Nativity certificate' },
+        { field: 'documents_birth', label: 'Birth certificate' },
       ].map(generateBunch)}
     </>
   );
 }
+
+// And Aadhar
+// Community
+// Income
+// Nativity
+// 12 the mark sheet
+// Birth certificate

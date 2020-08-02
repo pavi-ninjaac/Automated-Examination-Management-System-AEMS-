@@ -35,8 +35,6 @@ router.post('/register', URLParser, async (req: express.Request, res: express.Re
       Logger.debug('Validating credentials...');
       await validateUser(newUser);
     } catch (validationError) {
-      // ! validation error object
-      // TODO: FIX: validationError object is sent as [Object] to response
       return res.status(200).send({ code: 409, message: 'validation error', details: validationError });
     }
 

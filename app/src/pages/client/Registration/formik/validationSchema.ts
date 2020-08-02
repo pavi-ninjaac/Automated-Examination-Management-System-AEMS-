@@ -46,10 +46,9 @@ export default Yup.object({
   college_dateOfPassing: Yup.date().required(),
 
   documents_aadhaar: Yup.string().required(),
-  documents_voter: Yup.string().required(),
-  documents_SSLC: Yup.string().required(),
+  documents_community: Yup.string().required(),
+  documents_income: Yup.string().required(),
   documents_HSC: Yup.string().required(),
-  documents_deg: Yup.string().required(),
-  documents_photo: Yup.string().required(),
-  documents_signature: Yup.string().required()
+  documents_nativity: Yup.string().required(),
+  documents_birth: Yup.string().required(),
 });

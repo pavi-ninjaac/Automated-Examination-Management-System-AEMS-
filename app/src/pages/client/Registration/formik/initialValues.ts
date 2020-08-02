@@ -52,10 +52,9 @@ export default {
   college_dateOfPassing: new Date(),
 
   documents_aadhaar: '',
-  documents_voter: '',
-  documents_SSLC: '',
+  documents_community: '',
+  documents_income: '',
   documents_HSC: '',
-  documents_deg: '',
-  documents_photo: '',
-  documents_signature: '',
+  documents_nativity: '',
+  documents_birth: '',
 }

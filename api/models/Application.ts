@@ -63,12 +63,11 @@ const applicationSchema = new Schema({
 
   documents: {
     aadhaar: { type: String, required: true },
-    voter: { type: String, required: true },
-    SSLC: { type: String, required: true },
+    community: { type: String, required: true },
+    income: { type: String, required: true },
     HSC: { type: String, required: true },
-    deg: { type: String, required: true },
-    photo: { type: String, required: true },
-    signature: { type: String, required: true }
+    nativity: { type: String, required: true },
+    birth: { type: String, required: true },
   },
 
   additionalDetails: {
