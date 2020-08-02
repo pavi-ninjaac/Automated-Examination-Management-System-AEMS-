@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Logo from '../assets/images/logo.png';
+import Logo from '../assets/images/logo1.png';
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -11,7 +11,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '.5rem 1rem',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: theme.palette.primary.main,
+    color: '#fff !important'
   },
   brand: {
     display: 'flex',
@@ -26,10 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
-    color: 'black',
-    "&:hover": {
-      color: theme.palette.primary.main
-    }
+    color: '#fff !important'
   },
   list: {
     display: "flex", justifyContent: "flex-end"
@@ -37,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     listStyle: "none",
     display: "inline-block",
-    marginLeft: "1rem"
+    marginLeft: "1rem",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.light
+    }
   }
 }));
 
