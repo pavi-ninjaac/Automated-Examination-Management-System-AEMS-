@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Table, TableBody, Typography, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@material-ui/core";
+
+// import ResultOperations from '../tools/functions/results';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -28,9 +30,9 @@ const useStyles = makeStyles({
 
 function TabRow(value) {
   return (
-    <StyledTableRow key={value.id}>
+    <StyledTableRow key={value._id}>
       <StyledTableCell component="th" scope="row">
-        {value.id}
+        {value._id}
       </StyledTableCell>
       <StyledTableCell style={{ minWidth: '50%' }} align="center">{value.name}</StyledTableCell>
       <StyledTableCell align="center">{value.mark}</StyledTableCell>
@@ -43,23 +45,30 @@ function TabRow(value) {
 
 export default function InputTable(props) {
   const classes = useStyles();
-  const [Data] = useState([
-    {
-      id: 1,
-      name: "AAAA",
-      mark: 95
-    },
-    {
-      id: 2,
-      name: "BBBB",
-      mark: 25
-    },
-    {
-      id: 3,
-      name: "CCC",
-      mark: 65
-    }
-  ]);
+  const [data, setData] = useState([{
+    _id: '5f27bfc6155b49dcae11f220',
+    name: 'Dravid Kumar B',
+    mark: 78
+  }, {
+    _id: '5f27c24bea06786e4420ba3c',
+    name: 'Pavithra Devi M',
+    mark: 82
+  }]);
+
+  // useEffect(() => {
+  //   // const data = ResultOperations.getResults()
+  //   console.log(data);
+  //   setData([{
+  //     _id: '5f27bfc6155b49dcae11f220',
+  //     name: 'Dravid Kumar B',
+  //     mark: 78
+  //   }, {
+  //     _id: '5f27c24bea06786e4420ba3c',
+  //     name: 'Pavithra Devi M',
+  //     mark: 82
+  //   }]);
+  // }, []);
+
 
   return (
     <Container maxWidth="sm">
@@ -74,7 +83,7 @@ export default function InputTable(props) {
               <StyledTableCell align="right">Result&nbsp;</StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{Data.map(TabRow)}</TableBody>
+          <TableBody>{data.map(TabRow)}</TableBody>
         </Table>
       </TableContainer>
     </Container>

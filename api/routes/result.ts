@@ -8,21 +8,21 @@ import verifyAuth from '../middlewares/verifyAuth';
 const router = express.Router();
 
 router.get('/all', async (req: express.Request, res: express.Response) => {
-  try {
-    Logger.debug('>Fetching Results');
-    const results = await Result.find({}, { __v: 0 });
-    if (results.length === 0) {
-      return res.status(204).send('no result data found');
-    }
-    return res.status(200).send(results);
-  } catch (err) {
-    Logger.debug(err);
-    return res.status(500).send('error retrieving results');
-  }
+  Logger.debug('>Fetching Results');
+  Result.find({}, { __v: 0 })
+    .then((results) => {
+      Logger.debug(results);
+      return res.status(200).send(results);
+    })
+    .catch((err) => {
+      Logger.debug(err);
+      return res.status(500).send('error retrieving results');
+    });
 });
 
 router.post('/update', verifyAuth, async (req: any, res: express.Response) => {
   Logger.debug('>Posting Results');
+  Logger.debug(req.body.results);
   if (req.user.type !== 'admin') {
     return res.status(401).send('You don\'t have enough privileges to access this route');
   } try {

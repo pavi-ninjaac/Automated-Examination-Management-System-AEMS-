@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Typography, Container, Grid } from "@material-ui/core";
 import illus from "../assets/images/professor.svg";
 
 export default function homepage() {
   return (
     <React.Fragment>
       <Container>
+        <Typography variant='h2' component='h1' align='center'>TETOHA</Typography>
         <Grid container spacing={3} justify={"center"}>
           <Grid item style={{ textAlign: 'center' }} xs={12}>
             <img
@@ -33,7 +34,7 @@ export default function homepage() {
             <Link to='/registration'>
               <Button variant="contained" color="secondary" size="large" fullWidth>
                 Register
-            </Button>
+              </Button>
             </Link>
           </Grid>
         </Grid>
@@ -41,12 +42,3 @@ export default function homepage() {
     </React.Fragment>
   );
 }
-
-////////////////////////////////////////////
-
-// Home back image URL
-
-// https://www.pexels.com/photo/photography-of-brown-3-storey-concrete-building-698207/
-
-
-/////////////////////////////////////////////

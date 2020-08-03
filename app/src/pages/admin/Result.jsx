@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   InputBase, Table, Typography, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Container,
 } from "@material-ui/core";
+
+// import ResultOperations from '../../tools/functions/results';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -28,27 +30,33 @@ const useStyles = makeStyles({
   }
 });
 
-export default function InputTable(props: any) {
+export default function InputTable(props) {
   const classes = useStyles();
-  const [Data, setData] = useState([
-    {
-      id: 1,
-      name: "AAAA",
-      mark: 95
-    },
-    {
-      id: 2,
-      name: "BBBB",
-      mark: 25
-    },
-    {
-      id: 3,
-      name: "CCC",
-      mark: 65
-    }
-  ]);
+  const [data, setData] = useState([{
+    _id: '5f27bfc6155b49dcae11f220',
+    name: 'Dravid Kumar B',
+    mark: 78
+  }, {
+    _id: '5f27c24bea06786e4420ba3c',
+    name: 'Pavithra Devi M',
+    mark: 82
+  }]);
 
-  const handleChange = (event: any) => {
+  useEffect(() => {
+    // const data = ResultOperations.getResults();
+    // console.log(data);
+    // setData([{
+    //   _id: '5f27bfc6155b49dcae11f220',
+    //   name: 'Dravid Kumar B',
+    //   mark: 78
+    // }, {
+    //   _id: '5f27c24bea06786e4420ba3c',
+    //   name: 'Pavithra Devi M',
+    //   mark: 82
+    // }]);
+  }, []);
+
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setData(old => {
       let temp = old;
@@ -57,11 +65,11 @@ export default function InputTable(props: any) {
     });
   };
 
-  function TabRow(value: any, ind: number) {
+  function TabRow(value, ind) {
     return (
-      <StyledTableRow key={value.id}>
+      <StyledTableRow key={value._id}>
         <StyledTableCell component="th" scope="row">
-          {value.id}
+          {value._id}
         </StyledTableCell>
         <StyledTableCell align="center">{value.name}</StyledTableCell>
         <StyledTableCell align="right">
@@ -70,6 +78,7 @@ export default function InputTable(props: any) {
             name={ind + ""}
             defaultValue={value.mark}
             onChange={handleChange}
+            type='number'
             inputProps={{ "aria-label": "naked" }}
           />
         </StyledTableCell>
@@ -89,22 +98,20 @@ export default function InputTable(props: any) {
               <StyledTableCell align="right">Mark&nbsp;</StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{Data.map(TabRow)}</TableBody>
+          <TableBody>{data.map(TabRow)}</TableBody>
         </Table>
       </TableContainer>
       <Button
         style={{ margin: "3rem 0" }}
         variant="contained"
-        color="primary"
-        onClick={() => console.log(Data)}>
+        color="primary">
         Update
       </Button>
       <Button
         style={{ margin: "3rem 1rem" }}
         variant="outlined"
-        color="secondary"
-        onClick={() => console.log(Data)}>
-        Delete current results
+        color="secondary">
+        Results
       </Button>
     </Container>
   );
