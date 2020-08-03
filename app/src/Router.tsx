@@ -19,15 +19,12 @@ import Verify from './pages/auth/Verify';
 
 import SignedInNavBar from "./components/SignedInNavBar";
 import NavBar from "./components/NavBar";
+import Footer from './components/Footer';
 
 import Materials from "./pages/Materials";
-
 import Registration from './pages/client/Registration/Registration';
-
 import Home from './pages/Home';
-
 import AdminHome from './pages/admin/AdminHome';
-
 import Page404 from './pages/errors/404';
 
 function Loading() {
@@ -104,6 +101,8 @@ function AppController() {
           <Fab color="primary" aria-label="add" style={{ position: 'fixed', right: '3rem', bottom: '3rem' }} onClick={() => { window.open('https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=545c0a11-e926-4871-9dbe-d8d9bd0c520b&serviceInstanceID=5b16323a-7f43-4f60-8f3d-47d0c2a43fa2', '_blank') }}>
             <ForumOutlinedIcon />
           </Fab>
+
+          <Footer />
         </>
       }
     </Fragment>
