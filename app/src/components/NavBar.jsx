@@ -59,6 +59,11 @@ export default function NavBar() {
             </Link>
           </li>
           <li className={classes.listItem}>
+            <Link to="/results" className={classes.link}>
+              Results
+            </Link>
+          </li>
+          <li className={classes.listItem}>
             <Link to="/auth/logout" className={classes.link}>
               Sign Out
             </Link>

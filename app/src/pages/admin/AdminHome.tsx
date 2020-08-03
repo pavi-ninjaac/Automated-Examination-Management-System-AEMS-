@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 
 import Card from "../../components/Card";
@@ -67,9 +69,11 @@ export default function AdminPage() {
           </Button>
           </Grid>
           <Grid item>
-            {/* <Button variant="contained" color="primary">
-              Button 2
-          </Button> */}
+            <Link to='/admin/results'>
+              <Button variant="contained" color="primary">
+                Results
+            </Button>
+            </Link>
           </Grid>
         </Grid>
         <div style={{ marginTop: "2rem" }}>

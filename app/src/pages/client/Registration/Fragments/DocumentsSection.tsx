@@ -11,7 +11,7 @@ export default function DocumentsSection({ generateBunch }: any) {
         { field: 'documents_income', label: 'Income certificate' },
         { field: 'documents_HSC', label: 'HSC Mark sheet' },
         { field: 'documents_nativity', label: 'Nativity certificate' },
-        { field: 'documents_birth', label: 'Birth certificate' }, ,
+        { field: 'documents_birth', label: 'Birth certificate' },
         { field: 'documents_photograph', label: 'Professional photograph' },
         { field: 'documents_signature', label: 'Signature' },
       ].map(generateBunch)}

@@ -22,9 +22,14 @@ import NavBar from "./components/NavBar";
 import Footer from './components/Footer';
 
 import Materials from "./pages/Materials";
-import Registration from './pages/client/Registration/Registration';
+import ResultView from './pages/ResultView';
 import Home from './pages/Home';
+
+import Registration from './pages/client/Registration/Registration';
+
 import AdminHome from './pages/admin/AdminHome';
+import Result from './pages/admin/Result';
+
 import Page404 from './pages/errors/404';
 
 function Loading() {
@@ -76,12 +81,14 @@ function AppController() {
           <Route path='/auth/logout' exact verified={verified} authenticated={auth} component={LogOut} />
 
           <AdminRoute path='/admin' exact isAdmin={isAdmin} component={AdminHome} />
+          <AdminRoute path='/admin/results' exact isAdmin={isAdmin} component={Result} />
 
           <ProtectedRoute path='/registration' exact verified={verified} authenticated={auth} component={Registration} />
           <ProtectedRoute path='/auth/verify' exact verified={verified} authenticated={auth} component={Verify} />
 
           <Route path='/' exact component={Home} />
           <Route path='/materials' exact component={Materials} />
+          <Route path='/results' exact component={ResultView} />
           <Route path='*' component={Page404} />
         </Switch>
       </Router>

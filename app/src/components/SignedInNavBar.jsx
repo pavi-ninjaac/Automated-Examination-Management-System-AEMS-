@@ -64,6 +64,11 @@ export default function SignedInNavBar() {
             </Link>
           </li>
           <li className={classes.listItem}>
+            <Link to="/results" className={classes.link}>
+              Results
+            </Link>
+          </li>
+          <li className={classes.listItem}>
             <Link to="/auth/signin" className={classes.link}>
               SignIn
             </Link>
