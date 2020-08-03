@@ -51,4 +51,6 @@ export default Yup.object({
   documents_HSC: Yup.string().required(),
   documents_nativity: Yup.string().required(),
   documents_birth: Yup.string().required(),
+  documents_photograph: Yup.string().required(),
+  documents_signature: Yup.string().required(),
 });

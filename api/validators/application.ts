@@ -55,6 +55,8 @@ const applicationValidationSchema = Joi.object({
     HSC: Joi.boolean().required(),
     community: Joi.string().required(),
     birth: Joi.string().required(),
+    photograph: Joi.string().required(),
+    signature: Joi.string().required(),
   },
   additional: { isWorking: Joi.boolean().required(), }
 });

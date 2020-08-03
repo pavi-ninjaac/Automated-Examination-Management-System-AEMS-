@@ -57,4 +57,6 @@ export default {
   documents_HSC: '',
   documents_nativity: '',
   documents_birth: '',
+  documents_photograph: '',
+  documents_signature: '',
 }

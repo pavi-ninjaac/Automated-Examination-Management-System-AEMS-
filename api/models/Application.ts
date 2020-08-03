@@ -68,6 +68,8 @@ const applicationSchema = new Schema({
     HSC: { type: String, required: true },
     nativity: { type: String, required: true },
     birth: { type: String, required: true },
+    photograph: { type: String, required: true },
+    signature: { type: String, required: true },
   },
 
   additionalDetails: {

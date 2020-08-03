@@ -49,6 +49,8 @@ async function register(formData) {
     HSC: formData.documents_HSC,
     nativity: formData.documents_nativity,
     birth: formData.documents_birth,
+    photograph: formData.documents_photograph,
+    signature: formData.documents_signature,
   }
   reqBody.college = {
     degree: formData.college_degree,
