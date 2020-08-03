@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { InputBase } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Container from '@material-ui/core/Container';
+import {
+  InputBase, Table, Typography, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Container,
+} from "@material-ui/core";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -85,8 +78,8 @@ export default function InputTable(props: any) {
   }
 
   return (
-    <>
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" style={{ margin: '2rem auto' }}>
+      <Typography variant='h2' component='h1' align='center'>Results</Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
@@ -100,14 +93,19 @@ export default function InputTable(props: any) {
         </Table>
       </TableContainer>
       <Button
-        style={{ margin: "3rem 0", float: "right" }}
+        style={{ margin: "3rem 0" }}
         variant="contained"
         color="primary"
-        onClick={() => console.log(Data)}
-      >
+        onClick={() => console.log(Data)}>
         Update
       </Button>
+      <Button
+        style={{ margin: "3rem 1rem" }}
+        variant="outlined"
+        color="secondary"
+        onClick={() => console.log(Data)}>
+        Delete current results
+      </Button>
     </Container>
-    </>
   );
 }
