@@ -1,3 +1,4 @@
 import auth from './auth';
 import application from './application';
-export { auth, application }
+import result from './result';
+export { auth, application, result }
