@@ -13,7 +13,7 @@ const port = Number(process.env.PORT) || 3000;
 Logger.useDefaults();
 
 // Show all logs when in development, only Warnings and errors in production
-Logger.setLevel(process.env.NODE_ENV === 'production' ? Logger.WARN : Logger.DEBUG);
+Logger.setLevel(process.env.NODE_ENV === 'production' ? Logger.ERROR : Logger.DEBUG);
 
 app.use(cors());
 app.use('/api', APIRouter);

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Table, TableBody, Typography, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@material-ui/core";
 
-// import ResultOperations from '../tools/functions/results';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -54,21 +53,6 @@ export default function InputTable(props) {
     name: 'Pavithra Devi M',
     mark: 82
   }]);
-
-  // useEffect(() => {
-  //   // const data = ResultOperations.getResults()
-  //   console.log(data);
-  //   setData([{
-  //     _id: '5f27bfc6155b49dcae11f220',
-  //     name: 'Dravid Kumar B',
-  //     mark: 78
-  //   }, {
-  //     _id: '5f27c24bea06786e4420ba3c',
-  //     name: 'Pavithra Devi M',
-  //     mark: 82
-  //   }]);
-  // }, []);
-
 
   return (
     <Container maxWidth="sm">
