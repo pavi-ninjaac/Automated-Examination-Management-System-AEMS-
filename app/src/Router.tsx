@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import axios from 'axios';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress, Fab } from '@material-ui/core';
+import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 import CenterContainer from './containers/CenterContainer';
 
 import ProtectedRoute from './routers/ProtectedRoute';
@@ -96,7 +97,14 @@ function AppController() {
         <CenterContainer>
           <Loading />
         </CenterContainer>
-        : <AppRouter />
+        :
+        <>
+          <AppRouter />
+
+          <Fab color="primary" aria-label="add" style={{ position: 'fixed', right: '3rem', bottom: '3rem' }} onClick={() => { window.open('https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=545c0a11-e926-4871-9dbe-d8d9bd0c520b&serviceInstanceID=5b16323a-7f43-4f60-8f3d-47d0c2a43fa2', '_blank') }}>
+            <ForumOutlinedIcon />
+          </Fab>
+        </>
       }
     </Fragment>
   );

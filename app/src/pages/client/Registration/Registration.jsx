@@ -74,9 +74,6 @@ export default function Registration() {
 
   const submitForm = async (values) => {
     setStatus('processing');
-    if (formik.errors) {
-      setAlertMessage(formik.errors);
-    }
     setStatus(await FormController.register(values));
   }
 
@@ -127,16 +124,14 @@ export default function Registration() {
                       <Button
                         disabled={activeStep === 0}
                         onClick={handleBack}
-                        className={classes.button}
-                      >
+                        className={classes.button}>
                         Back
-                    </Button>
+                      </Button>
                       <Button
                         variant="contained"
                         color="primary"
                         onClick={handleNext}
-                        className={classes.button}
-                      >
+                        className={classes.button}>
                         {activeStep === steps.length - 1 ? "Finish" : "Next"}
                       </Button>
                     </div>
@@ -152,11 +147,14 @@ export default function Registration() {
                 className={classes.button}
                 onClick={() => {
                   setActiveStep(0);
-                }}
-              >
+                }}              >
                 STEP 1
             </Button>
-              <Button type="submit"
+              <Button type="submit" onClick={() => {
+                if (formik.errors !== {}) {
+                  setAlertMessage('Please fill out all mandatory fields');
+                }
+              }}
                 variant="contained" color="primary">
                 {(status === 'processing') ?
                   <CircularProgress color='secondary' size={20} /> : 'Register'}

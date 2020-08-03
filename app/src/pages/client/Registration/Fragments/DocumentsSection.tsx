@@ -16,10 +16,3 @@ export default function DocumentsSection({ generateBunch }: any) {
     </>
   );
 }
-
-// And Aadhar
-// Community
-// Income
-// Nativity
-// 12 the mark sheet
-// Birth certificate
