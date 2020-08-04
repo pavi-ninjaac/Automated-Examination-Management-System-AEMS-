@@ -26,6 +26,7 @@
   
 # Features and Solutions:
 
+<i><b>PPT-Presentation</b></i> : https://drive.google.com/file/d/1BUlI8u3DoZh6v6sxJ6sW6YToDoG2Bofr/view?usp=drivesdk
 ## Security:
 
 - With all the problem and the requirements in mind we build our web app entirely with <i><b>React, Type Script, Python</b></i> So the use data is completely secure from the most of the hacking techniques. 
