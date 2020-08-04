@@ -20,7 +20,10 @@
 -	[Team members](#team-members)
 
 # About Our project:
-
+  
+ <i><b> This is our Web app that can rununder very low network coverage areas, No need for the humen intervention during the document verification process, So the human error is reduces. The accuracy of the verification is high beacuse we are using the "3 stage verification" With the help of the OCR(ML and DL) MOdel.</i></b>
+  
+  
 # Features and Solutions:
 
 ## Security:
